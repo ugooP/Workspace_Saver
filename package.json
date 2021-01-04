@@ -8,12 +8,13 @@
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
-  "author": "",
+  "author": "Ugo.P",
   "license": "ISC",
   "dependencies": {
     "child_process": "^1.0.2",
     "electron-squirrel-startup": "^1.0.0",
     "express": "^4.17.1",
+    "http": "0.0.1-security",
     "nodemon": "^2.0.6",
     "open": "^7.3.0"
   },
