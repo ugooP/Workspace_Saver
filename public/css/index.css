@@ -5,14 +5,12 @@
     color: white;
 }
 body {
-    margin: 0;
-    padding: 0;
     background-color: rgb(42, 42, 42);
     display: flex;
     align-items: center;
     flex-direction: column;
 }
-input {
+.search-input {
     padding: 5px;
     margin: 0 3px;
     border: none;
@@ -29,7 +27,7 @@ input {
     align-items: center;
     background-color: rgb(35, 35, 35);
 }
-button {
+.select-app-btn {
     color: black;
     cursor: pointer;
     border: none;
@@ -37,15 +35,14 @@ button {
     margin: 0 3px;
     border-radius: 3px;
 }
-ul {
-    display: flex;
+.app-list {
+    display: none;
     flex-direction: column;
     align-items: center;
     width: 250px;
-    height: auto;
     background-color: rgb(35, 35, 35);
 }
-ul li {
+.app-list li {
     align-self: flex-start;
     list-style: none;
     padding: 5px 0 5px 5%;
@@ -54,7 +51,7 @@ ul li {
     transition: .1s;
     width: 95%;
 }
-ul li:hover {
+.app-list li:hover {
     opacity: 1;
     background-color: rgb(24, 90, 245);
 }

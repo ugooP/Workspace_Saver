@@ -10,7 +10,7 @@ app.whenReady().then(() => {
         { label: 'Fermer tous les logiciels ouverts', type: 'normal', click() { closeAllOpenedApp() }},
         { type: 'separator' },
         
-        { label: 'workspace 1', type: 'normal' },
+        { label: 'workspace 1', type: 'normal', click() { openWorkspace() }},
         { label: 'workspace 2', type: 'normal' },
         { label: 'workspace 3', type: 'normal' },
         { label: 'workspace 4', type: 'normal' },

@@ -31,6 +31,14 @@ input.addEventListener('input', () => {
         }
     }
 })
+// On focus, show the list of applications
+input.addEventListener('focus', () => {
+    ul.style.display = 'flex'
+})
+// On blur, hide the list of applications
+input.addEventListener('blur', () => {
+    ul.style.display = 'none'
+})
 
 // Run the selected app
 btn.addEventListener('click', () => {
