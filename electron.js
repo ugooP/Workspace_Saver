@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, Menu, Tray, BrowserWindow } = require('electron')
 
 function createWindow () {
     const win = new BrowserWindow({
@@ -69,8 +69,32 @@ function startServer() {
     })
 }
 
+let tray = null
+app.whenReady().then(() => {
+    tray = new Tray('img/icons/icon.png')
+    const contextMenu = Menu.buildFromTemplate([
+        { label: 'Nouvel espace de travail', type: 'normal' },
+        { label: 'Fermer tous les logiciels ouverts', type: 'normal' },
+        { type: 'separator' },
+        
+        { label: 'workspace 1', type: 'normal' },
+        { label: 'workspace 2', type: 'normal' },
+        { label: 'workspace 3', type: 'normal' },
+        { label: 'workspace 4', type: 'normal' },
+        { label: 'workspace 5', type: 'normal' },
 
-app.whenReady().then(createWindow)
+        { type: 'separator' },
+        { label: 'Préférences', type: 'normal' },
+        { label: 'À propos', type: 'normal' },
+        { type: 'separator' },
+        { label: 'Quitter', type: 'normal', click() { app.quit() } }
+
+    ])
+    tray.setToolTip('Workspace Saver')
+    tray.setContextMenu(contextMenu)
+})
+
+//app.whenReady().then(createWindow)
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
