@@ -1,6 +1,35 @@
 const { app, Menu, Tray, BrowserWindow } = require('electron')
+let bigAppList = []
+let tray = null
 
-function createWindow () {
+app.whenReady().then(() => {
+    // Tray configuration
+    tray = new Tray('img/icons/icon.png')
+    const contextMenu = Menu.buildFromTemplate([
+        { label: 'Créer un nouvel espace de travail', type: 'normal', click() { newWorkspaceWindow() }},
+        { label: 'Fermer tous les logiciels ouverts', type: 'normal', click() { closeAllOpenedApp() }},
+        { type: 'separator' },
+        
+        { label: 'workspace 1', type: 'normal' },
+        { label: 'workspace 2', type: 'normal' },
+        { label: 'workspace 3', type: 'normal' },
+        { label: 'workspace 4', type: 'normal' },
+        { label: 'workspace 5', type: 'normal' },
+
+        { type: 'separator' },
+        { label: 'Préférences...', type: 'normal', click() { createWindow('preferences') }},
+        { label: 'À propos', type: 'normal', click() { createWindow('about') }},
+        { type: 'separator' },
+        { label: 'Quitter', type: 'normal', click() { app.quit() }}
+    ])
+    tray.setToolTip('Workspace Saver')
+    tray.setContextMenu(contextMenu)
+
+    // Hide icon in dock
+    app.dock.hide()
+})
+
+function newWorkspaceWindow () {
     const win = new BrowserWindow({
         width: 800,
         height: 600,
@@ -14,7 +43,6 @@ function createWindow () {
 }
 
 function startServer() {
-    const exec = require('child_process').exec
     const open = require('open')
     
     // Server initiation
@@ -26,40 +54,11 @@ function startServer() {
     app.use(express.text())
     
     // Get all applications of the user
-    let bigAppList = []
     searchForApp('Applications')
     searchForApp('System/Applications')
     searchForApp('System/Applications/Utilities')
     
-    function searchForApp(directory) {
-        exec('ls', { cwd: `/${directory}`}, (error, data, getter) => {
-            let appList = data.split('\n')
-        
-            for (let i = 0; i < appList.length; i++) {
-                const app = appList[i];
-                let regExp = new RegExp('\.app$')
-        
-                if (regExp.test(app)) {
-                    createObject(`${directory}/${app}`)
-                }
-            }
-        })
-    }
-    
-    function createObject(fullAppPath) {
-        
-        let newPath = fullAppPath.replace('.app', '')
-        let newName = newPath.split('/')
-        let name = newName[newName.length - 1]
-    
-        let obj = {
-            "name": name,
-            "path": fullAppPath
-        }
-    
-        bigAppList.push(obj)
-    }
-    
+    // Give the list of all applications to client side
     app.get('/api/appList', (req, res) => {
         res.send(JSON.stringify(bigAppList))
     })
@@ -69,41 +68,49 @@ function startServer() {
     })
 }
 
-let tray = null
-app.whenReady().then(() => {
-    tray = new Tray('img/icons/icon.png')
-    const contextMenu = Menu.buildFromTemplate([
-        { label: 'Nouvel espace de travail', type: 'normal' },
-        { label: 'Fermer tous les logiciels ouverts', type: 'normal' },
-        { type: 'separator' },
-        
-        { label: 'workspace 1', type: 'normal' },
-        { label: 'workspace 2', type: 'normal' },
-        { label: 'workspace 3', type: 'normal' },
-        { label: 'workspace 4', type: 'normal' },
-        { label: 'workspace 5', type: 'normal' },
+function searchForApp(directory) {
+    // Search applications in a specific directory
+    const exec = require('child_process').exec
+    
+    exec('ls', { cwd: `/${directory}`}, (error, data, getter) => {
+        let appList = data.split('\n')
+    
+        for (let i = 0; i < appList.length; i++) {
+            const app = appList[i];
+            let regExp = new RegExp('\.app$')
+    
+            if (regExp.test(app)) {
+                createObject(`${directory}/${app}`)
+            }
+        }
+    })
+}
 
-        { type: 'separator' },
-        { label: 'Préférences', type: 'normal' },
-        { label: 'À propos', type: 'normal' },
-        { type: 'separator' },
-        { label: 'Quitter', type: 'normal', click() { app.quit() } }
+function createObject(fullAppPath) {
+    // Create an object with the name and the path of an application
+    let newPath = fullAppPath.replace('.app', '')
+    let newName = newPath.split('/')
+    let name = newName[newName.length - 1]
 
-    ])
-    tray.setToolTip('Workspace Saver')
-    tray.setContextMenu(contextMenu)
-})
-
-//app.whenReady().then(createWindow)
-
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-        app.quit()
+    let obj = {
+        "name": name,
+        "path": fullAppPath
     }
-})
 
-app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-        createWindow()
-    }
-})
+    bigAppList.push(obj)
+}
+
+function closeAllOpenedApp () {
+    
+}
+
+function createWindow (fileName) {
+    const win = new BrowserWindow({
+        width: fileName === 'about' ? 300 : 300,
+        height: fileName === 'about' ? 300 : 500,
+        webPreferences: {
+            nodeIntegration: true
+        }
+    })
+    win.loadFile(`public/${fileName}.html`)
+}
