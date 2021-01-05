@@ -2,6 +2,9 @@ const { app, Menu, Tray, BrowserWindow } = require('electron')
 let bigAppList = []
 let tray = null
 
+// Hide icon in dock
+app.dock.hide()
+
 app.whenReady().then(() => {
     // Tray configuration
     tray = new Tray('img/icons/icon.png')
@@ -24,15 +27,13 @@ app.whenReady().then(() => {
     ])
     tray.setToolTip('Workspace Saver')
     tray.setContextMenu(contextMenu)
-
-    // Hide icon in dock
-    app.dock.hide()
 })
 
 function newWorkspaceWindow () {
     const win = new BrowserWindow({
         width: 800,
         height: 600,
+        maximizable: false,
         webPreferences: {
             nodeIntegration: true
         }
@@ -108,9 +109,19 @@ function createWindow (fileName) {
     const win = new BrowserWindow({
         width: fileName === 'about' ? 300 : 300,
         height: fileName === 'about' ? 300 : 500,
+        resizable: false,
+        maximizable: false,
+        minimizable: false,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            devTools: false,
         }
     })
-    win.loadFile(`public/${fileName}.html`)
+    win.loadFile(`public/html/${fileName}.html`)
 }
+
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit()
+    }
+})
