@@ -9,12 +9,31 @@
     <title>Nouvel espace de travail</title>
 </head>
 <body>
-    <div class="selectProgram">
-        <input type="text" class="search-input">
-        <button class="select-app-btn">Sélectionner</button>
+    <div class="desktop-container">
+        <button onclick="createNewDesktop('left')">+</button>
+        <div class="desktop-list">
+
+            <div class="desktop active-desktop">
+                <p>Bureau 1</p>
+            </div>
+
+        </div>
+        <button onclick="createNewDesktop('right')">+</button>
     </div>
-    <ul class="app-list"></ul>
+
+    <div class="app-selection-container">
+        <div>
+            <input type="text" class="search-input">
+            <button class="select-app-btn">Ajouter</button>
+            <input type="file" accept=".app" class="select-app-input" title="Importer un logiciel">
+        </div>
+        <ul class="app-list"></ul>
+    </div>
+
+    <div class="desktop-infos-container">
+    </div>
 
     <script src="js/appListSearchSystem.js"></script>
+    <script src="js/desktop.js"></script>
 </body>
 </html>

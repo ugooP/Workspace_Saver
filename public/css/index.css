@@ -1,14 +1,75 @@
+/* 
+COLOR PALETTE
+
+DARK GREY rgb(30, 30, 30)
+LIGHT GREY rgb(41, 41, 41)
+BLUE rgb(50, 115, 208)
+*/
+
 * {
     margin: 0;
     padding: 0;
     font-family: Poppins, sans-serif;
     color: white;
 }
+html {
+    background-color: rgb(95, 95, 95);
+}
 body {
-    background-color: rgb(42, 42, 42);
+    margin-top: 100px;
+    width: 1200px;
+    min-width: 1200px;
+    max-width: 1200px;
+    height: 700px;
+    min-height: 700px;
+    max-height: 700px;
+    background-color: rgb(30, 30, 30);
     display: flex;
+    flex-flow: row wrap;
+}
+
+/* DESKS */
+.desktop-container {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    flex-direction: column;
+}
+.desktop-container button {
+    color: white;
+    background-color: rgb(58, 61, 63);
+    border: none;
+    outline: none;
+    margin: 0 10px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.desktop {
+    width: 200px;
+    height: 120px;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 0 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+/* APP SELECTION */
+.app-selection-container {
+    width: 50%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(35, 35, 35);
 }
 .search-input {
     padding: 5px;
@@ -19,14 +80,6 @@ body {
     width: 200px;
     outline: none;
 }
-.selectProgram {
-    width: 250px;
-    margin-top: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(35, 35, 35);
-}
 .select-app-btn {
     color: black;
     cursor: pointer;
@@ -35,11 +88,30 @@ body {
     margin: 0 3px;
     border-radius: 3px;
 }
+.select-app-input {
+    visibility: hidden;
+    width: 157px;
+}
+.select-app-input:last-child {
+    margin-top: -20px;
+}
+.select-app-input::before {
+    visibility: visible;
+    content: '...';
+    display: inline-block;
+    background-color: rgb(49, 52, 54);
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+}
 .app-list {
     display: none;
     flex-direction: column;
     align-items: center;
     width: 250px;
+    max-height: 300px;
+    overflow: scroll;
     background-color: rgb(35, 35, 35);
 }
 .app-list li {
@@ -48,10 +120,16 @@ body {
     padding: 5px 0 5px 5%;
     cursor: pointer;
     opacity: .7;
-    transition: .1s;
     width: 95%;
 }
 .app-list li:hover {
     opacity: 1;
-    background-color: rgb(24, 90, 245);
+    background-color: rgb(179, 83, 43);
+}
+
+/* DESK INFOS */
+.desktop-infos-container {
+    width: 50%;
+    height: 75%;
+    background-color: black;
 }

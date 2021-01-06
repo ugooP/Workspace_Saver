@@ -1,6 +1,6 @@
-let input = document.querySelector('input')
-let ul = document.querySelector('ul')
-let btn = document.querySelector('button')
+let input = document.querySelector('.search-input')
+let ul = document.querySelector('.app-list')
+let btn = document.querySelector('.select-app-btn')
 let appList
 
 fetch('/api/appList', { method: 'GET' })
@@ -19,7 +19,7 @@ fetch('/api/appList', { method: 'GET' })
 
 // Search system
 input.addEventListener('input', () => {
-    let listLi = document.querySelectorAll('li')
+    let listLi = ul.querySelectorAll('li')
     userInput = input.value
     
     for (let i = 0; i < appList.length; i++) {
