@@ -31,7 +31,7 @@ app.whenReady().then(() => {
 
 function newWorkspaceWindow () {
     const win = new BrowserWindow({
-        width: 1200,
+        width: 100,
         height: 700,
         maximizable: false,
         webPreferences: {

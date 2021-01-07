@@ -1,6 +1,6 @@
 let input = document.querySelector('.search-input')
 let ul = document.querySelector('.app-list')
-let btn = document.querySelector('.select-app-btn')
+let addBtn = document.querySelector('.select-app-btn')
 let appList
 
 fetch('/api/appList', { method: 'GET' })
@@ -41,8 +41,8 @@ input.addEventListener('blur', () => {
 })
 
 // Run the selected app
-btn.addEventListener('click', () => {
-    let path
+addBtn.addEventListener('click', () => {
+    /* let path
     // Get the path of the selected prorgam
     for (let i = 0; i < appList.length; i++) {
         if (input.value.toLowerCase() === appList[i].name.toLowerCase()) {
@@ -58,9 +58,10 @@ btn.addEventListener('click', () => {
         },
         body: path
     }
-    fetch('/api/appList', options)
+    fetch('/api/appList', options) */
 })
     
 function fillInput(app) {
     input.value = app
+    ul.style.display = 'none'
 }

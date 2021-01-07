@@ -21,19 +21,20 @@
         <button onclick="createNewDesktop('right')">+</button>
     </div>
 
-    <div class="app-selection-container">
-        <div>
-            <input type="text" class="search-input">
-            <button class="select-app-btn">Ajouter</button>
-            <input type="file" accept=".app" class="select-app-input" title="Importer un logiciel">
-        </div>
-        <ul class="app-list"></ul>
-    </div>
-
     <div class="desktop-infos-container">
+        <div class="app-selection-container">
+            <div class="app-selection">
+                <div class="input-and-app-list">
+                    <input type="text" class="search-input">
+                    <ul class="app-list"></ul>
+                </div>
+                <button class="select-app-btn">Ajouter</button>
+                <input type="file" accept=".app" class="select-app-input" title="Importer une application">
+            </div>
+        </div>
     </div>
 
     <script src="js/appListSearchSystem.js"></script>
-    <script src="js/desktop.js"></script>
+    <script src="js/workspaceCreation.js"></script>
 </body>
 </html>
