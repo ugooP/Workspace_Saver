@@ -11,17 +11,17 @@
 <body>
     <div class="desktop-container">
         <div class="first-btn-container btn-container">
-            <button onclick="createNewDesktop('left')">+</button>
+            <button onclick="createNewDesktop('afterbegin')">+</button>
         </div>
         
         <div class="desktop-list">
-            <div class="desktop active-desktop">
+            <div class="desktop active-desktop" onclick="selectDesktop(1)">
                 <p>Bureau 1</p>
             </div>
         </div>
 
         <div class="last-btn-container btn-container">
-            <button onclick="createNewDesktop('right')">+</button>
+            <button onclick="createNewDesktop('beforeend')">+</button>
         </div>
     </div>
 
@@ -38,7 +38,10 @@
         </div>
         <div class="desktop-number-container">
             <p class="desktop-number">Bureau 1</p>
-            <span class="desktop-number-span"></span>
+            <div class="desktop-number-span-container">
+                <span class="desktop-number-span1 desktop-number-span desktop-number-span1-anim"></span>
+                <span class="desktop-number-span2 desktop-number-span desktop-number-span2-anim"></span>
+            </div>
         </div>
         <div class="app-added-to-workspace">
             <div class="app-card">
@@ -54,6 +57,6 @@
     </div>
 
     <script src="js/appListSearchSystem.js"></script>
-    <script src="js/workspaceCreation.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>

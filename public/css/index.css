@@ -39,6 +39,7 @@ body {
     z-index: +1;
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
 }
 .btn-container {
     width: 25px;
@@ -90,6 +91,10 @@ body {
         -10px -10px 26px #262626,
         inset 10px 10px 26px #161616,
         inset -5px -5px 26px #262626;
+}
+.active-desktop {
+    width: 170px;
+    height: 90px;
 }
 
 /* DESK INFOS */
@@ -178,22 +183,19 @@ body {
     display: inline-block;
 }
 .desktop-number-span {
-    width: 0;
     height: 2px;
     background-color: rgb(50, 115, 208);
     display: block;
     margin-top: -3px;
-    animation: desktop-span-anim .6s ease-in-out forwards;
 }
-.desktop-number-span::after {
-    display: block;
-    content: '';
-    width: 0;
-    height: 2px;
-    background-color: rgb(50, 115, 208);
-    position: relative;
-    left: 0;
-    animation: desktop-span-after-anim .8s ease-in-out forwards;
+.desktop-number-span1-anim {
+    animation: desktop-span1-anim .5s forwards;
+}
+.desktop-number-span2-anim {
+    animation: desktop-span2-anim .7s forwards;
+}
+.desktop-number-span2 {
+    margin-top: -2px;
 }
 
 .app-added-to-workspace {
@@ -238,19 +240,19 @@ body {
 }
 
 /* ANIMATIONS */
-@keyframes desktop-span-anim {
+@keyframes desktop-span1-anim {
     0% {
         width: 0;
     } 100% {
-        width: 65%;
+        width: 47px;
     }
 }
-@keyframes desktop-span-after-anim {
+@keyframes desktop-span2-anim {
     0% {
         width: 0;
-        left: 0;
+        margin-left: 0;
     } 100% {
-        width: 8%;
-        left: 107%;
+        width: 6px;
+        margin-left: 50px;
     }
 }
