@@ -40,9 +40,18 @@ input.addEventListener('blur', () => {
     ul.style.display = 'none'
 })
 
-// Run the selected app
+// Add the selected app to the workspace
 addBtn.addEventListener('click', () => {
-    /* let path
+    
+})
+    
+function fillInput(app) {
+    input.value = app
+    ul.style.display = 'none'
+}
+
+function openApp() {
+    let path
     // Get the path of the selected prorgam
     for (let i = 0; i < appList.length; i++) {
         if (input.value.toLowerCase() === appList[i].name.toLowerCase()) {
@@ -58,10 +67,5 @@ addBtn.addEventListener('click', () => {
         },
         body: path
     }
-    fetch('/api/appList', options) */
-})
-    
-function fillInput(app) {
-    input.value = app
-    ul.style.display = 'none'
+    fetch('/api/appList', options)
 }

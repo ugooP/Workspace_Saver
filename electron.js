@@ -7,7 +7,7 @@ app.dock.hide()
 
 app.whenReady().then(() => {
     // Tray configuration
-    tray = new Tray('img/icons/icon.png')
+    tray = new Tray('public/img/icons/icon.png')
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Créer un nouvel espace de travail', type: 'normal', click() { newWorkspaceWindow() }},
         { label: 'Fermer tous les logiciels ouverts', type: 'normal', click() { closeAllOpenedApp() }},
@@ -31,7 +31,7 @@ app.whenReady().then(() => {
 
 function newWorkspaceWindow () {
     const win = new BrowserWindow({
-        width: 100,
+        width: 800,
         height: 700,
         maximizable: false,
         webPreferences: {

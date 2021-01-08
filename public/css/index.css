@@ -18,12 +18,11 @@ html {
 body {
     margin-top: 100px;
     margin-left: 10px;
-    width: 1000px;
-    height: 700px;
-    background-color: rgb(43, 43, 43);
+    width: 800px;
+    height: 500px;
+    background-color: rgb(30, 30, 30);
     display: flex;
     flex-direction: column;
-    overflow: hidden;
 }
 
 /* DESKTOP */
@@ -35,26 +34,33 @@ body {
     align-items: center;
 }
 .desktop-container button {
+    opacity: 1;
     color: white;
-    background-color: rgb(50, 115, 208);
-    box-shadow: 0 0 10px rgba(0, 0, 0, .25);
+    background-color: rgba(88, 88, 88, 0.1);
     border: none;
     outline: none;
-    margin: 0 10px;
-    border-radius: 50%;
+    border-radius: 0 50px 50px 0;
     width: 30px;
-    height: 30px;
+    height: 50px;
     cursor: pointer;
+    transition: opacity .3s;
+}
+.desktop-container button:first-child {
+    border-radius: 50px 0 0 50px;
+    z-index: +1;
 }
 .desktop {
-    width: 200px;
-    height: 120px;
-    border: 1px solid white;
+    width: 160px;
+    height: 80px;
+    border: 4px solid rgb(35, 35, 35);
     border-radius: 5px;
-    margin: 0 3px;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 10px 10px 26px #161616,
+        -10px -10px 26px #262626,
+        inset 10px 10px 26px #161616,
+        inset -5px -5px 26px #262626;
 }
 
 /* DESK INFOS */
@@ -64,21 +70,23 @@ body {
 }
 .app-selection-container {
     width: 100%;
-    height: 30%;
+    height: 20%;
     display: flex;
     overflow: visible;
     justify-content: center;
+    align-items: center;
 }
 .app-selection {
-    margin-top: 5%;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    width: 370px;
+    width: 365px;
+    height: 30px;
 }
 .input-and-app-list {
     background-color: rgb(35, 35, 35);
     width: 250px;
+    position: relative;
 }
 .search-input {
     padding: 2% 3%;
@@ -99,14 +107,13 @@ body {
 .select-app-input {
     visibility: hidden;
     width: 30px;
-    height: 30px;
-    /*padding: 5px 4px 5px 0;*/
+    padding: 5px 4px 5px 0;
 }
 .select-app-input::before {
     visibility: visible;
     content: '+';
     background-color: rgb(71, 71, 71);
-    padding: 6px 10px;
+    padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
     color: white;
@@ -116,9 +123,9 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-height: 200px;
     overflow: scroll;
     background-color: rgb(35, 35, 35);
+    position: absolute;
 }
 .app-list li {
     align-self: flex-start;
@@ -132,4 +139,45 @@ body {
 .app-list li:hover {
     opacity: 1;
     background-color: rgb(50, 115, 208);
+}
+.app-added-to-workspace {
+    padding-top: 50px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80%;
+    height: 80%;
+    margin: 0 10%;
+}
+.app-card {
+    display: grid;
+    grid-template-columns: 1fr 40px 30px;
+    column-gap: 15px;
+    width: 43%;
+    height: 40px;
+    border-radius: 50px;
+    padding: 0 2%;
+    background-color: rgb(30, 30, 30);
+    box-shadow: 0px 0px 26px #161616;
+}
+.app-card p {
+    align-self: center;
+    margin-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 14px;
+}
+.app-card a {
+    align-self: center;
+    font-size: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: rgb(50, 115, 208);
+}
+.app-card img {
+    align-self: center;
+    width: 20px;
+    grid-column: 3;
+    cursor: pointer;
 }
