@@ -10,15 +10,19 @@
 </head>
 <body>
     <div class="desktop-container">
-        <button onclick="createNewDesktop('left')">+</button>
+        <div class="first-btn-container btn-container">
+            <button onclick="createNewDesktop('left')">+</button>
+        </div>
+        
         <div class="desktop-list">
-
             <div class="desktop active-desktop">
                 <p>Bureau 1</p>
             </div>
-
         </div>
-        <button onclick="createNewDesktop('right')">+</button>
+
+        <div class="last-btn-container btn-container">
+            <button onclick="createNewDesktop('right')">+</button>
+        </div>
     </div>
 
     <div class="desktop-infos-container">
@@ -31,6 +35,10 @@
                 <button class="select-app-btn">Ajouter</button>
                 <input type="file" accept=".app" class="select-app-input" title="Importer une application">
             </div>
+        </div>
+        <div class="desktop-number-container">
+            <p class="desktop-number">Bureau 1</p>
+            <span class="desktop-number-span"></span>
         </div>
         <div class="app-added-to-workspace">
             <div class="app-card">

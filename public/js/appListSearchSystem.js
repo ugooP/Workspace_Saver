@@ -1,5 +1,6 @@
 let input = document.querySelector('.search-input')
 let ul = document.querySelector('.app-list')
+let listLi = ul.querySelectorAll('li')
 let addBtn = document.querySelector('.select-app-btn')
 let appList
 
@@ -12,14 +13,13 @@ fetch('/api/appList', { method: 'GET' })
         for (let i = 0; i < data.length; i++) {
             const app = data[i].name;
             ul.insertAdjacentHTML('beforeend', `
-                <li onclick="fillInput('${app}')">${app}</li>
+                <li>${app}</li>
             `)
         }
     })
 
 // Search system
 input.addEventListener('input', () => {
-    let listLi = ul.querySelectorAll('li')
     userInput = input.value
     
     for (let i = 0; i < appList.length; i++) {
@@ -45,9 +45,15 @@ addBtn.addEventListener('click', () => {
     
 })
     
+for (let i = 0; i < listLi.length; i++) {
+    listLi[i].addEventListener('click', () => {console.log('trrr');})
+    
+}
+
 function fillInput(app) {
     input.value = app
     ul.style.display = 'none'
+    console.log('tr');
 }
 
 function openApp() {
