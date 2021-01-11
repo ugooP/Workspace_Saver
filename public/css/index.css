@@ -199,7 +199,6 @@ body {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    align-items: flex-start;
     width: 80%;
     height: 62%;
     margin: 0 10%;

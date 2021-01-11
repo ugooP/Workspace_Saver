@@ -1,7 +1,6 @@
 let input = document.querySelector('.search-input')
 let ul = document.querySelector('.app-list')
 let addBtn = document.querySelector('.select-app-btn')
-let inputAndAppListContainer = document.querySelector('.input-and-app-list')
 let mouseStatus, appList
 
 fetch('/api/appList', { method: 'GET' })
@@ -13,7 +12,7 @@ fetch('/api/appList', { method: 'GET' })
         for (let i = 0; i < data.length; i++) {
             const app = data[i].name;
             ul.insertAdjacentHTML('beforeend', `
-                <li onclick="fillInput('${app}')">${app}</li>
+                <li onclick="fillInput('${app}')" path="${data[i].path}">${app}</li>
             `)
         }
     })
@@ -24,6 +23,7 @@ function fillInput(app) {
 }
 
 function setMouseStatus(status) {
+    // If the mouse is over the ".app-list" element, set mouseStatus to true and vice versa
     mouseStatus = status
 }
 
@@ -52,28 +52,3 @@ input.addEventListener('blur', () => {
         ul.style.display = 'none'
     }
 })
-
-// Add the selected app to the workspace
-addBtn.addEventListener('click', () => {
-    
-})
-
-function openApp() {
-    let path
-    // Get the path of the selected prorgam
-    for (let i = 0; i < appList.length; i++) {
-        if (input.value.toLowerCase() === appList[i].name.toLowerCase()) {
-            path = appList[i].path;
-            break
-        }
-    }
-
-    let options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'text/plain',
-        },
-        body: path
-    }
-    fetch('/api/appList', options)
-}
