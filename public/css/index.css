@@ -16,8 +16,6 @@ html {
     background-color: rgb(95, 95, 95);
 }
 body {
-    margin-top: 100px;
-    margin-left: 10px;
     width: 800px;
     height: 500px;
     background-color: rgb(30, 30, 30);
@@ -120,7 +118,6 @@ body {
 .input-and-app-list {
     background-color: rgb(35, 35, 35);
     width: 250px;
-    position: relative;
 }
 .search-input {
     padding: 2% 3%;
@@ -159,7 +156,7 @@ body {
     width: 100%;
     overflow: scroll;
     background-color: rgb(35, 35, 35);
-    position: absolute;
+    position: relative;
 }
 .app-list li {
     align-self: flex-start;
@@ -204,7 +201,7 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     width: 80%;
-    height: 65%;
+    height: 62%;
     margin: 0 10%;
 }
 .app-card {
@@ -244,7 +241,7 @@ body {
     0% {
         width: 0;
     } 100% {
-        width: 47px;
+        width: 30px;
     }
 }
 @keyframes desktop-span2-anim {
@@ -252,7 +249,7 @@ body {
         width: 0;
         margin-left: 0;
     } 100% {
-        width: 6px;
-        margin-left: 50px;
+        width: 4px;
+        margin-left: 32px;
     }
 }

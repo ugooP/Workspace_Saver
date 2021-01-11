@@ -1,4 +1,5 @@
 const { app, Menu, Tray, BrowserWindow } = require('electron')
+const { shell } = require('electron')
 const server = require('./server')
 let tray = null
 
@@ -14,7 +15,7 @@ app.whenReady().then(() => {
         { type: 'separator' },
         
         { label: 'workspace 1', type: 'normal', click() { openWorkspace() }},
-        { label: 'workspace 2', type: 'normal' },
+        { label: 'workspace 2', type: 'normal', click() { shell.openExternal('https://www.twitch.tv') } },
         { label: 'workspace 3', type: 'normal' },
         { label: 'workspace 4', type: 'normal' },
         { label: 'workspace 5', type: 'normal' },
@@ -32,7 +33,7 @@ app.whenReady().then(() => {
 function newWorkspaceWindow () {
     const win = new BrowserWindow({
         width: 800,
-        height: 700,
+        height: 500,
         maximizable: false,
         webPreferences: {
             nodeIntegration: true

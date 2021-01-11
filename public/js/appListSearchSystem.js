@@ -1,8 +1,8 @@
 let input = document.querySelector('.search-input')
 let ul = document.querySelector('.app-list')
-let listLi = ul.querySelectorAll('li')
 let addBtn = document.querySelector('.select-app-btn')
-let appList
+let inputAndAppListContainer = document.querySelector('.input-and-app-list')
+let mouseStatus, appList
 
 fetch('/api/appList', { method: 'GET' })
     .then((response) => response.json())
@@ -13,17 +13,27 @@ fetch('/api/appList', { method: 'GET' })
         for (let i = 0; i < data.length; i++) {
             const app = data[i].name;
             ul.insertAdjacentHTML('beforeend', `
-                <li>${app}</li>
+                <li onclick="fillInput('${app}')">${app}</li>
             `)
         }
     })
 
+function fillInput(app) {
+    input.value = app
+    ul.style.display = 'none'
+}
+
+function setMouseStatus(status) {
+    mouseStatus = status
+}
+
 // Search system
 input.addEventListener('input', () => {
-    userInput = input.value
+    let listLi = document.querySelectorAll('.app-list li')
+    let userInput = input.value
     
     for (let i = 0; i < appList.length; i++) {
-        const app = appList[i];
+        let app = appList[i];
         if (app.name.toLowerCase().substring(0, userInput.length) === userInput.toLowerCase()) {
             listLi[i].style.display = ''
         } else {
@@ -31,30 +41,22 @@ input.addEventListener('input', () => {
         }
     }
 })
+
 // On focus, show the list of applications
-input.addEventListener('focus', () => {
-    ul.style.display = 'flex'
+input.addEventListener('click', () => {
+    ul.style.display = 'block'
 })
 // On blur, hide the list of applications
 input.addEventListener('blur', () => {
-    ul.style.display = 'none'
+    if (!mouseStatus) {
+        ul.style.display = 'none'
+    }
 })
 
 // Add the selected app to the workspace
 addBtn.addEventListener('click', () => {
     
 })
-    
-for (let i = 0; i < listLi.length; i++) {
-    listLi[i].addEventListener('click', () => {console.log('trrr');})
-    
-}
-
-function fillInput(app) {
-    input.value = app
-    ul.style.display = 'none'
-    console.log('tr');
-}
 
 function openApp() {
     let path

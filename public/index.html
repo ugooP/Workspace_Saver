@@ -11,7 +11,7 @@
 <body>
     <div class="desktop-container">
         <div class="first-btn-container btn-container">
-            <button onclick="createNewDesktop('afterbegin')">+</button>
+            <!-- <button onclick="createNewDesktop('afterbegin')">+</button> -->
         </div>
         
         <div class="desktop-list">
@@ -30,7 +30,7 @@
             <div class="app-selection">
                 <div class="input-and-app-list">
                     <input type="text" class="search-input">
-                    <ul class="app-list"></ul>
+                    <ul class="app-list" onmouseover="setMouseStatus(true)" onmouseout="setMouseStatus(false)"></ul>
                 </div>
                 <button class="select-app-btn">Ajouter</button>
                 <input type="file" accept=".app" class="select-app-input" title="Importer une application">
