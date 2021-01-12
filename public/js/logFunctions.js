@@ -2,6 +2,6 @@ function logErrorMsg(msg) {
     console.log(`❌ ${msg}`);
 }
 
-function logValidationMsg(msg) {
+function logSuccessMsg(msg) {
     console.log(`👍 ${msg}`);
 }

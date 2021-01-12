@@ -22,6 +22,58 @@ body {
     display: flex;
     flex-direction: column;
 }
+.button-default-style {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: rgb(50, 115, 208);
+    padding: 5px 13px;
+    border-radius: 5px;
+}
+
+.workspace-name {
+    position: absolute;
+    top: -30px;
+    left: -15px;
+    font-size: 80px;
+    font-weight: 800;
+    color: rgba(35, 35, 35);
+}
+.workspace-name-input-container {
+
+    display: none;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 800px;
+    height: 500px;
+    z-index: +2;
+    background-color: rgb(30, 30, 30);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: +2;
+}
+.workspace-name-input {
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.workspace-name-input input {
+    background-color: rgb(30, 30, 30);
+    width: 300px;
+    padding: 9px 13px;
+    border: 1px solid white;
+    color: white;
+    border-radius: 8px;
+    outline: none;
+}
+.workspace-name-btn {
+    height: 98%;
+    margin-left: 10px;
+    border-radius: 8px;
+}
 
 /* DESKTOP */
 .desktop-container {
@@ -112,7 +164,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    width: 365px;
+    width: 368px;
     height: 30px;
 }
 .input-and-app-list {
@@ -126,14 +178,6 @@ body {
     border-radius: 3px;
     width: 94%;
     outline: none;
-}
-.select-app-btn {
-    cursor: pointer;
-    border: none;
-    outline: none;
-    background-color: rgb(50, 115, 208);
-    padding: 5px 10px;
-    border-radius: 5px;
 }
 .select-app-input {
     visibility: hidden;

@@ -9,6 +9,15 @@
     <title>Nouvel espace de travail</title>
 </head>
 <body>
+    <div class="workspace-name-input-container">
+        <div class="workspace-name-input">
+            <input type="text" placeholder="Nom de l'espace de travail">
+            <button class="workspace-name-btn button-default-style">Créer</button>
+        </div>
+    </div>
+
+    <h1 class="workspace-name"></h1>
+
     <div class="desktop-container">
         <div class="first-btn-container btn-container">
             <!-- <button onclick="createNewDesktop('afterbegin')">+</button> -->
@@ -32,7 +41,7 @@
                     <input type="text" class="search-input">
                     <ul class="app-list" onmouseover="setMouseStatus(true)" onmouseout="setMouseStatus(false)"></ul>
                 </div>
-                <button class="select-app-btn">Ajouter</button>
+                <button class="select-app-btn button-default-style">Ajouter</button>
                 <input type="file" accept=".app" class="select-app-input" title="Importer une application">
             </div>
         </div>
@@ -56,9 +65,11 @@
         </div>
     </div>
 
-    <script src="js/logFunctions.js"></script>
+    <script src="js/setWorkspaceName.js"></script>
     <script src="js/appListSearchSystem.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/JSONFileWriter.js"></script>
     <script src="js/multipleDesktopManagement.js"></script>
+    <script src="js/logFunctions.js"></script>
 </body>
 </html>

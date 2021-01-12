@@ -5,6 +5,7 @@ module.exports = {
 function startServer() {
     const exec = require('child_process').exec
     const open = require('open')
+    const fs = require('fs')
 
     // Server initiation
     const express = require('express')
@@ -58,4 +59,11 @@ function startServer() {
     app.post('/api/appList', (req, res) => {
         open(`/${req.body}`)
     })
+
+    /* app.get('/api/workspace', (req, res) => {
+        let file = fs.readFileSync('./save/patternWorkspace.json')
+        res.send(JSON.parse(file))
+    }) */
 }
+
+

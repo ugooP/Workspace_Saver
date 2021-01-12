@@ -23,8 +23,6 @@ async function apps() {
     } catch (e) {
       console.log(e)
     }
-  }
-apps()
-
+}
 
 
