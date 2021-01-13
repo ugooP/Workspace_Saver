@@ -52,26 +52,31 @@
                 <span class="desktop-number-span2 desktop-number-span desktop-number-span2-anim"></span>
             </div> -->
         </div>
+
         <div class="app-added-to-workspace">
-            <!-- <div class="app-card">
-                <p>Discord</p>
-                <img src="img/trash.png" alt="Supprimer cette application">
-            </div>
             <div class="app-card">
-                <p>Firefox Developper Edition</p>
-                <a>Détails</a>
-                <img src="img/trash.png" alt="Supprimer cette application">
-            </div> -->
+                <div class="title-container">
+                    <p path="${app.path}">${app.name}</p>
+                </div>
+                <div class="trash-container">
+                    <img src="img/trash.png" alt="Supprimer cette application">
+                </div>
+            </div>
         </div>
+
+    </div>
+
+    <div class="create-workspace-btn-container">
+        <button class="create-workspace-btn button-default-style">Créer</button>
     </div>
 
     <div class="log-msg-container success-msg-container">
         <img src="./img/check.png">
-        <p class="log-msg">Ouais</p>
+        <p class="log-msg"></p>
     </div>
     <div class="log-msg-container error-msg-container">
         <img src="./img/cross.png">
-        <p class="log-msg">c</p>
+        <p class="log-msg"></p>
     </div>
 
     <script src="js/setWorkspaceName.js"></script>

@@ -55,7 +55,7 @@ function addAppToWorkspace(app) {
     if (workspaceData === undefined) {
         initWorkspaceData()
     }
-    logSuccessMsg('Enormissime en faite !')
+
     // Check if the added app is a browser
     let browserRegExp = new RegExp('(google chrome|firefox|firefox developer edition|brave browser|safari|internet explorer)$')
     if (browserRegExp.test(app.name.toLowerCase())) {
