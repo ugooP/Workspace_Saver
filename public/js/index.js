@@ -1,5 +1,6 @@
 let addAppBtn = document.querySelector('.select-app-btn')
 let appsContainer = document.querySelector('.app-added-to-workspace')
+let appArrayList = []
 let workspaceData
 
 fetch('/api/appList', { method: 'GET' })
@@ -23,11 +24,12 @@ fetch('/api/appList', { method: 'GET' })
                 }
 
                 // Check if the app is already added to the workspace
-                if (!isAppAlreadyAddedToWorkspace(app.name)) {
+                if (!isAppAlreadyAddedToWorkspace(app)) {
                     addAppToWorkspace(app)
                     break
                 } else {
-                    logErrorMsg(`${app.name} a déjà été ajouté à l'espace de travail`)
+                    logErrorMsg(`${app.name} est déjà ajouté à l'espace de travail`)
+                    break
                 }
             }
         }
@@ -38,8 +40,12 @@ fetch('/api/appList', { method: 'GET' })
 })
 
 function isAppAlreadyAddedToWorkspace(app) {
-
-
+    for (let i = 0; i < appArrayList.length; i++) {
+        const appName = appArrayList[i].name;
+        if (appName === app.name) {
+            return true
+        }
+    }
     return false
 }
 
@@ -49,11 +55,11 @@ function addAppToWorkspace(app) {
     if (workspaceData === undefined) {
         initWorkspaceData()
     }
-    console.log(workspaceData);
-
+    logSuccessMsg('Enormissime en faite !')
     // Check if the added app is a browser
-    if (isBrowser(input.value.toLowerCase())) {
-        
+    let browserRegExp = new RegExp('(google chrome|firefox|firefox developer edition|brave browser|safari|internet explorer)$')
+    if (browserRegExp.test(app.name.toLowerCase())) {
+        logSuccessMsg('ça c un browser')
     }
     // Add new card in apps container
     appsContainer.insertAdjacentHTML('afterbegin', `
@@ -63,23 +69,12 @@ function addAppToWorkspace(app) {
         </div>
     `)
 
+    appArrayList.push(app)
+
     // Reset input
     input.value = ''
     input.focus()
     ul.style.display = 'none'
-}
-
-function isBrowser(app) {
-    let browsers = [
-        'google chrome', 'firefox', 'firefox developer edition', 'brave browser', 'safari', 'internet explorer'
-    ]
-
-    for (let i = 0; i < browsers.length; i++) {
-        if (browsers[i] === app) {
-            return true
-        }
-    }
-    return false
 }
 
 function initWorkspaceData() {

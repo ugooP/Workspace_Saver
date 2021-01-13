@@ -4,6 +4,7 @@ COLOR PALETTE
 DARK GREY rgb(30, 30, 30)
 LIGHT GREY rgb(41, 41, 41)
 BLUE rgb(50, 115, 208)
+LIGHT GREEN rgb(105, 230, 209)
 */
 
 * {
@@ -21,6 +22,7 @@ body {
     background-color: rgb(30, 30, 30);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 .button-default-style {
     cursor: pointer;
@@ -41,7 +43,7 @@ body {
 }
 .workspace-name-input-container {
 
-    display: none;
+    display: none !important;
 
     position: absolute;
     top: 0;
@@ -198,9 +200,10 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    overflow: scroll;
     background-color: rgb(35, 35, 35);
     position: relative;
+    max-height: 328px;
+    overflow: scroll;
 }
 .app-list li {
     align-self: flex-start;
@@ -277,6 +280,38 @@ body {
     width: 20px;
     grid-column: 3;
     cursor: pointer;
+}
+
+.log-msg-container {
+    height: 30px;
+    border-radius: 10px;
+    padding: 8px 20px;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: -46px;
+    transition: bottom 1s;
+}
+.log-msg-container img {
+    height: 16px;
+    padding-right: 10px;
+}
+.success-msg-container {
+    background-color: rgb(105, 230, 209);
+}
+.error-msg-container {
+    background-color: rgb(226, 82, 65);
+}
+.log-msg {
+    font-size: 13px;
+    font-weight: 500;
+}
+.success-msg-container .log-msg {
+    color: black;
+}
+.error-msg-container .log-msg {
+    color: white;
 }
 
 /* ANIMATIONS */
