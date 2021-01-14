@@ -1,5 +1,6 @@
 let addAppBtn = document.querySelector('.select-app-btn')
 let appsContainer = document.querySelector('.app-added-to-workspace')
+let appCardCrossImg = document.querySelector('.app-card .img-container')
 let appArrayList = []
 let workspaceData
 
@@ -62,10 +63,12 @@ function addAppToWorkspace(app) {
         logSuccessMsg('ça c un browser')
     }
     // Add new card in apps container
-    appsContainer.insertAdjacentHTML('afterbegin', `
+    appsContainer.insertAdjacentHTML('beforeend', `
         <div class="app-card">
             <p path="${app.path}">${app.name}</p>
-            <img src="img/trash.png" alt="Supprimer cette application">
+            <div class="img-container" onclick="removeApp('${app.name}')">
+                <img src="./img/cross.png" alt="Supprimer ${app.name}">
+            </div>
         </div>
     `)
 
@@ -77,6 +80,22 @@ function addAppToWorkspace(app) {
     ul.style.display = 'none'
 }
 
+function removeApp(appName) {
+    let appCards = document.querySelectorAll('.app-card')
+
+    for (let i = 0; i < appArrayList.length; i++) {
+        const app = appArrayList[i];
+        if (app.name === appName) {
+            //Remove app from the array list
+            appArrayList.splice(i, 1)
+            
+            //Remove app from the app container
+            appsContainer.removeChild(appCards[i])
+            break
+        }
+    }
+}
+
 function initWorkspaceData() {
     workspaceData = {
         "workspaceName": sessionStorage.getItem('workspaceName'),
@@ -84,4 +103,8 @@ function initWorkspaceData() {
             "desktop1": []
         }
     }
+}
+
+function createWorkspace() {
+    console.log(appArrayList);
 }

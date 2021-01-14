@@ -82,11 +82,11 @@ body {
 /* DESKTOP */
 .desktop-container {
     width: 90%;
-    height: 20%;
+    height: 25%;
     margin: 0 5%;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     overflow: scroll;
 }
 .desktop-list {
@@ -154,7 +154,7 @@ body {
 /* DESK INFOS */
 .desktop-infos-container {
     width: 100%;
-    height: 70%;
+    height: 60%;
 }
 .app-selection-container {
     width: 100%;
@@ -250,47 +250,35 @@ body {
     justify-content: space-between;
     width: 80%;
     height: 64%;
-    margin: 0 10%;
+    padding: 0 10%;
+    overflow: scroll;
 }
 .app-card {
-    /* display: grid;
+    display: grid;
     grid-template-columns: 1fr 40px 30px;
-    column-gap: 15px; */
+    column-gap: 15px;
     width: 43%;
     height: 40px;
     border-radius: 50px;
     background-color: rgb(41, 41, 41);
-    position: relative;
     /* box-shadow: 0 0 10px 30px rgba(40, 40, 40, 0.2); */
 }
-.title-container {
-    width: 96%;
-    height: 100%;
-    border-radius: 50px;
-    position: absolute;
-    background-color: rgb(40, 40, 40);
-    display: flex;
-    align-items: center;
+.app-card .img-container {
+    grid-column: 3;
+    cursor: pointer;
+    align-self: center;
+    width: fit-content;
+    padding: 0 4px;
 }
-.trash-container {
-    background-color: rgb(50, 115, 208);
-    border-radius: 50px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-.trash-container img {
-    padding: 5px;
-    margin-right: 5px;
+.app-card .img-container img {
+    width: 10px;
 }
 .app-card p {
     align-self: center;
-    margin-left: 10px;
+    margin-left: 20px;
     white-space: nowrap;
     overflow: hidden;
-    font-size: 14px;
+    font-size: 13px;
 }
 .app-card a {
     align-self: center;
@@ -298,12 +286,6 @@ body {
     border-radius: 6px;
     cursor: pointer;
     color: rgb(50, 115, 208);
-}
-.app-card img {
-    align-self: center;
-    width: 20px;
-    grid-column: 3;
-    cursor: pointer;
 }
 
 .log-msg-container {
@@ -340,14 +322,16 @@ body {
 
 /* CREATE WORKSPACE BTN */
 .create-workspace-btn-container {
-    height: 10%;
+    height: 15%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
 .create-workspace-btn {
     margin-right: 20px;
-    padding: 10px 20px;
+    padding: 6px 25px;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 /* ANIMATIONS */
