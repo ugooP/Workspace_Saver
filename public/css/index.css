@@ -33,11 +33,6 @@ body {
     border-radius: 5px;
 }
 
-/* CLOSE WINDOW BTNS */
-.close-window-btns-container {
-    height: 5%;
-}
-
 /* WORKSPACE NAME */
 .workspace-name {
     position: absolute;
@@ -48,43 +43,6 @@ body {
     color: #232529;
     cursor: default;
     user-select: none;
-}
-.workspace-name-input-container {
-
-
-    display: none !important;
-
-
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 800px;
-    height: 500px;
-    z-index: +2;
-    background-color: #1E2024;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: +2;
-}
-.workspace-name-input {
-    height: 34px;
-    display: flex;
-    align-items: center;
-}
-.workspace-name-input input {
-    background-color: #eaeaea;
-    width: 300px;
-    padding: 7px 11px;
-    border: none;
-    color: black;
-    border-radius: 8px;
-    outline: none;
-}
-.workspace-name-btn {
-    height: 100%;
-    margin-left: 10px;
-    border-radius: 8px;
 }
 
 /* DESKTOP */
@@ -155,7 +113,7 @@ body {
     height: 80px;
 }
 
-/* DESK INFOS */
+/* SEARCH SYSTEM */
 .desktop-infos-container {
     width: 100%;
     height: 55%;
@@ -188,20 +146,8 @@ body {
     outline: none;
     background-color: #eaeaea;
 }
-/* .select-app-input {
-    visibility: hidden;
-    width: 30px;
-    padding: 5px 4px 5px 0;
-}
-.select-app-input::before {
-    visibility: visible;
-    content: '+';
-    background-color: rgb(51, 51, 51);
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    color: white;
-} */
+
+/* APP LIST */
 .app-list {
     display: block;
     flex-direction: column;
@@ -209,11 +155,10 @@ body {
     width: 100%;
     background-color: #262A2F;
     position: relative;
-    /* height: 303px; */
-    height: 0;
     overflow: scroll;
+    max-height: 0;
     z-index: 2;
-    transition: height .2s;
+    transition: max-height .2s;
 }
 .app-list li {
     align-self: flex-start;
@@ -255,22 +200,22 @@ body {
     cursor: pointer;
 }
 
+/* APP CARD */
 .app-card {
-    display: grid;
-    grid-template-columns: 1fr 40px 30px;
-    column-gap: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 43%;
     height: 40px;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #262A2F;
     margin: 5px;
 }
 .app-card .img-container {
-    grid-column: 3;
     cursor: pointer;
-    align-self: center;
     width: fit-content;
     padding: 0 4px;
+    margin-right: 13px;
 }
 .app-card .img-container img {
     width: 10px;
@@ -281,11 +226,11 @@ body {
     opacity: 1;
 }
 .app-card p {
-    align-self: center;
     margin-left: 20px;
     white-space: nowrap;
     overflow: hidden;
-    font-size: 13px;
+    font-size: 14px;
+    font-weight: 500;
 }
 .app-card a {
     align-self: center;
@@ -293,6 +238,27 @@ body {
     border-radius: 6px;
     cursor: pointer;
     color: rgb(50, 115, 208);
+}
+.browser-app-card {
+    display: block;
+    border-radius: 10px 10px 0 0;
+    height: auto;
+}
+.app-card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+}
+.browser-app-card .browser-app-tab-container {
+    background-color: #E56130;
+    border-radius: 0 0 10px 10px;
+    cursor: pointer;
+    padding: 3px;
+}
+.browser-app-tab-container p {
+    font-size: 12px;
+    font-weight: 400;
 }
 
 .log-msg-container {
@@ -340,3 +306,63 @@ body {
     font-size: 14px;
     font-weight: 500;
 }
+
+/* HIDDEN CONTAINERS */
+
+/* CLOSE WINDOW BTNS */
+.close-window-btns-container {
+    height: 5%;
+}
+
+/* WORKSPACE NAME */
+.workspace-name-input-container {
+
+
+    display: none !important;
+
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 800px;
+    height: 500px;
+    background-color: #1E2024;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: +2;
+}
+.workspace-name-input {
+    height: 34px;
+    display: flex;
+    align-items: center;
+}
+.workspace-name-input input {
+    background-color: #eaeaea;
+    width: 300px;
+    padding: 7px 11px;
+    border: none;
+    color: black;
+    border-radius: 8px;
+    outline: none;
+}
+.workspace-name-btn {
+    height: 100%;
+    margin-left: 10px;
+    border-radius: 8px;
+}
+
+/* BROWSER APP TABS MANAGEMENT */
+.browser-app-tab-management-window {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 800px;
+    height: 500px;
+    background-color: #1E2024;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: +2;
+}
+

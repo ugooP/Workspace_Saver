@@ -19,7 +19,7 @@ fetch('/api/appList', { method: 'GET' })
 
 function fillInput(app) {
     input.value = app
-    ul.style.display = 'none'
+    ul.style.maxHeight = '0'
     input.focus()
 }
 
@@ -45,11 +45,11 @@ input.addEventListener('input', () => {
 
 // On focus, show the list of applications
 input.addEventListener('click', () => {
-    ul.style.height = '303px'
+    ul.style.maxHeight = '303px'
 })
 // On blur, hide the list of applications
 input.addEventListener('blur', () => {
     if (!mouseStatus) {
-        ul.style.height = '0'
+        ul.style.maxHeight = '0'
     }
 })

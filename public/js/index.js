@@ -38,7 +38,7 @@ fetch('/api/appList', { method: 'GET' })
             }
         }
         if (count === 0) {
-            logErrorMsg(`${input.value} n'a pas été trouvé`)
+            logErrorMsg(`${input.value} n'a pas été trouvé dans la liste`)
         }
     }
 })
@@ -61,18 +61,40 @@ function addAppToWorkspace(app) {
     // Check if the added app is a browser
     let browserRegExp = new RegExp('(google chrome|firefox|firefox developer edition|brave browser|safari|internet explorer)$')
     if (browserRegExp.test(app.name.toLowerCase())) {
-        logSuccessMsg('ça c un browser')
-    }
-    // Add new card in apps container
-    appsContainer.insertAdjacentHTML('beforeend', `
-        <div class="app-card">
-            <p path="${app.path}">${app.name}</p>
-            <div class="img-container" onclick="removeApp('${app.name}')">
-                <img src="./img/cross.png" alt="Supprimer ${app.name}">
+        // Add new browser card in apps container
+        appsContainer.insertAdjacentHTML('beforeend', `
+            <div class="app-card browser-app-card">
+                <div class="app-card-title">
+                    <p path="${app.path}">${app.name}</p>
+                    <div class="img-container" onclick="removeApp('${app.name}')">
+                        <img src="./img/cross.png" alt="Supprimer ${app.name}">
+                    </div>
+                </div>
+                <div class="browser-app-tab-container">
+                    <p class="browser-app-tab-name">Gérer les onglets...</p>
+                </div>
             </div>
-        </div>
-    `)
-    appArrayList.push(app)
+        `)
+        // Make a new array in the appList with all tabs to open for this browser
+        let newApp = {
+            "name": app.name,
+            "path": app.path,
+            "tabs": []
+        }
+        appArrayList.push(newApp)
+
+    } else {
+        // Add new card in apps container
+        appsContainer.insertAdjacentHTML('beforeend', `
+            <div class="app-card">
+                <p path="${app.path}">${app.name}</p>
+                <div class="img-container" onclick="removeApp('${app.name}')">
+                    <img src="./img/cross.png" alt="Supprimer ${app.name}">
+                </div>
+            </div>
+        `)
+        appArrayList.push(app)
+    }
 
     // Delete the empty message if it's the first app added
     isDesktopEmpty()
@@ -80,7 +102,7 @@ function addAppToWorkspace(app) {
     // Reset input
     input.value = ''
     input.focus()
-    ul.style.display = 'none'
+    ul.style.maxHeight = '0'
 }
 function removeApp(appName) {
     let appCards = document.querySelectorAll('.app-card')
@@ -123,6 +145,7 @@ function isDesktopEmpty() {
         `)
     } else {
         try {
+            // If the added app is the first of the desktop, remove the message
             appsContainer.removeChild(document.querySelector('.empty-desktop-msg-container'))
             appsContainer.style.justifyContent = 'space-between'
         } catch (TypeError) {}
