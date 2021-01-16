@@ -45,11 +45,11 @@ input.addEventListener('input', () => {
 
 // On focus, show the list of applications
 input.addEventListener('click', () => {
-    ul.style.display = 'block'
+    ul.style.height = '303px'
 })
 // On blur, hide the list of applications
 input.addEventListener('blur', () => {
     if (!mouseStatus) {
-        ul.style.display = 'none'
+        ul.style.height = '0'
     }
 })

@@ -4,6 +4,9 @@ let appCardCrossImg = document.querySelector('.app-card .img-container')
 let appArrayList = []
 let workspaceData
 
+// At startup, workspace is empty, so tell it to the user
+isDesktopEmpty()
+
 fetch('/api/appList', { method: 'GET' })
 .then((response) => response.json())
 .then((data) => {
@@ -39,7 +42,6 @@ fetch('/api/appList', { method: 'GET' })
         }
     }
 })
-
 function isAppAlreadyAddedToWorkspace(app) {
     for (let i = 0; i < appArrayList.length; i++) {
         const appName = appArrayList[i].name;
@@ -49,7 +51,6 @@ function isAppAlreadyAddedToWorkspace(app) {
     }
     return false
 }
-
 function addAppToWorkspace(app) {
 
     // If it's the first time that user add an app, init the workspaceData variable
@@ -71,17 +72,16 @@ function addAppToWorkspace(app) {
             </div>
         </div>
     `)
-
     appArrayList.push(app)
+
+    // Delete the empty message if it's the first app added
+    isDesktopEmpty()
 
     // Reset input
     input.value = ''
     input.focus()
     ul.style.display = 'none'
 }
-
-function ouai() { window.close() }
-
 function removeApp(appName) {
     let appCards = document.querySelectorAll('.app-card')
 
@@ -96,8 +96,8 @@ function removeApp(appName) {
             break
         }
     }
+    isDesktopEmpty()
 }
-
 function initWorkspaceData() {
     workspaceData = {
         "workspaceName": sessionStorage.getItem('workspaceName'),
@@ -106,8 +106,25 @@ function initWorkspaceData() {
         }
     }
 }
-
 function createWorkspace() {
     console.log(workspaceData);
     console.log(appArrayList);
+}
+function isDesktopEmpty() {
+    if (appArrayList.length === 0) {
+        // If there is no app added to the workspace, say it to the user
+        appsContainer.style.justifyContent = 'center'
+
+        appsContainer.insertAdjacentHTML('afterbegin', `
+            <div class="empty-desktop-msg-container">
+                <p>Ce bureau est vide...</p>
+                <p>Commence par <span onclick="document.querySelector('.search-input').click(); document.querySelector('.search-input').focus()">Ajouter une application</span></p>
+            </div>
+        `)
+    } else {
+        try {
+            appsContainer.removeChild(document.querySelector('.empty-desktop-msg-container'))
+            appsContainer.style.justifyContent = 'space-between'
+        } catch (TypeError) {}
+    }
 }

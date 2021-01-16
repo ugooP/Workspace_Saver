@@ -203,15 +203,17 @@ body {
     color: white;
 } */
 .app-list {
-    display: none;
+    display: block;
     flex-direction: column;
     align-items: center;
     width: 100%;
     background-color: #262A2F;
     position: relative;
-    max-height: 303px;
+    /* height: 303px; */
+    height: 0;
     overflow: scroll;
     z-index: 2;
+    transition: height .2s;
 }
 .app-list li {
     align-self: flex-start;
@@ -227,14 +229,7 @@ body {
     background-color: #E56130;
 }
 
-/*  */
-.desktop-number-container {
-    height: 13%;
-    margin-left: 5%;
-    font-weight: 500;
-    display: inline-block;
-}
-
+/* APP ADDED TO WORKSPACE */
 .app-added-to-workspace {
     display: flex;
     flex-wrap: wrap;
@@ -245,6 +240,21 @@ body {
     padding: 0 10%;
     overflow: scroll;
 }
+.empty-desktop-msg-container {
+    font-size: 14px;
+    opacity: .1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.empty-desktop-msg-container p:first-of-type {
+    width: max-content;
+}
+.empty-desktop-msg-container span{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .app-card {
     display: grid;
     grid-template-columns: 1fr 40px 30px;
