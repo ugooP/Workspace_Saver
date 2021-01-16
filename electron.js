@@ -1,4 +1,4 @@
-const { app, Menu, Tray, BrowserWindow } = require('electron')
+const { app, Menu, Tray, BrowserWindow, remote } = require('electron')
 const { shell } = require('electron')
 const server = require('./server')
 let tray = null
@@ -35,6 +35,7 @@ function newWorkspaceWindow () {
         width: 800,
         height: 500,
         maximizable: false,
+        titleBarStyle: 'hidden',
         webPreferences: {
             nodeIntegration: true
         }
@@ -54,7 +55,7 @@ function createWindow (fileName) {
         height: fileName === 'about' ? 300 : 500,
         resizable: false,
         maximizable: false,
-        minimizable: false,
+        titleBarStyle: 'hidden',
         webPreferences: {
             nodeIntegration: true,
             devTools: false,

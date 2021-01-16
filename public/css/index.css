@@ -1,10 +1,10 @@
 /* 
 COLOR PALETTE
 
-DARK GREY rgb(30, 30, 30)
-LIGHT GREY rgb(41, 41, 41)
-BLUE rgb(50, 115, 208)
-LIGHT GREEN rgb(105, 230, 209)
+WHITE #eaeaea
+GREY #262A2F
+DARK BLUE #1E2024
+ORANGE #E56130
 */
 
 * {
@@ -19,7 +19,7 @@ html {
 body {
     width: 800px;
     height: 500px;
-    background-color: rgb(30, 30, 30);
+    background-color: #1E2024;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -28,18 +28,26 @@ body {
     cursor: pointer;
     border: none;
     outline: none;
-    background-color: rgb(50, 115, 208);
+    background-color: #E56130;
     padding: 5px 13px;
     border-radius: 5px;
 }
 
+/* CLOSE WINDOW BTNS */
+.close-window-btns-container {
+    height: 5%;
+}
+
+/* WORKSPACE NAME */
 .workspace-name {
     position: absolute;
-    top: -30px;
-    left: -15px;
+    top: -4px;
+    left: -20px;
     font-size: 80px;
     font-weight: 800;
-    color: rgba(35, 35, 35);
+    color: #232529;
+    cursor: default;
+    user-select: none;
 }
 .workspace-name-input-container {
 
@@ -53,28 +61,28 @@ body {
     width: 800px;
     height: 500px;
     z-index: +2;
-    background-color: rgb(30, 30, 30);
+    background-color: #1E2024;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: +2;
 }
 .workspace-name-input {
-    height: 40px;
+    height: 34px;
     display: flex;
     align-items: center;
 }
 .workspace-name-input input {
-    background-color: rgb(30, 30, 30);
+    background-color: #eaeaea;
     width: 300px;
-    padding: 9px 13px;
-    border: 1px solid white;
-    color: white;
+    padding: 7px 11px;
+    border: none;
+    color: black;
     border-radius: 8px;
     outline: none;
 }
 .workspace-name-btn {
-    height: 98%;
+    height: 100%;
     margin-left: 10px;
     border-radius: 8px;
 }
@@ -134,17 +142,13 @@ body {
     width: 140px;
     height: 70px;
     margin: 0 10px;
-    border: 4px solid rgb(35, 35, 35);
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background-color: rgb(30, 30, 30);
-    box-shadow: 10px 10px 26px #161616,
-        -10px -10px 26px #262626,
-        inset 10px 10px 26px #161616,
-        inset -5px -5px 26px #262626;
+    background-color: #1E2024;
+    box-shadow: 0px 0px 26px #161616;
 }
 .active-desktop {
     width: 150px;
@@ -154,7 +158,7 @@ body {
 /* DESK INFOS */
 .desktop-infos-container {
     width: 100%;
-    height: 60%;
+    height: 55%;
 }
 .app-selection-container {
     width: 100%;
@@ -168,7 +172,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    width: 368px;
+    width: 330px;
     height: 30px;
 }
 .input-and-app-list {
@@ -182,8 +186,9 @@ body {
     border-radius: 3px;
     width: 94%;
     outline: none;
+    background-color: #eaeaea;
 }
-.select-app-input {
+/* .select-app-input {
     visibility: hidden;
     width: 30px;
     padding: 5px 4px 5px 0;
@@ -196,16 +201,17 @@ body {
     cursor: pointer;
     border-radius: 5px;
     color: white;
-}
+} */
 .app-list {
     display: none;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    background-color: rgb(35, 35, 35);
+    background-color: #262A2F;
     position: relative;
-    max-height: 328px;
+    max-height: 303px;
     overflow: scroll;
+    z-index: 2;
 }
 .app-list li {
     align-self: flex-start;
@@ -218,7 +224,7 @@ body {
 }
 .app-list li:hover {
     opacity: 1;
-    background-color: rgb(50, 115, 208);
+    background-color: #E56130;
 }
 
 /*  */
@@ -228,28 +234,14 @@ body {
     font-weight: 500;
     display: inline-block;
 }
-.desktop-number-span {
-    height: 2px;
-    background-color: rgb(50, 115, 208);
-    display: block;
-    margin-top: -3px;
-}
-.desktop-number-span1-anim {
-    animation: desktop-span1-anim .5s forwards;
-}
-.desktop-number-span2-anim {
-    animation: desktop-span2-anim .7s forwards;
-}
-.desktop-number-span2 {
-    margin-top: -2px;
-}
 
 .app-added-to-workspace {
     display: flex;
-    flex-flow: row wrap;
+    flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
     width: 80%;
-    height: 64%;
+    height: 77%;
     padding: 0 10%;
     overflow: scroll;
 }
@@ -259,9 +251,9 @@ body {
     column-gap: 15px;
     width: 43%;
     height: 40px;
-    border-radius: 50px;
-    background-color: rgb(41, 41, 41);
-    /* box-shadow: 0 0 10px 30px rgba(40, 40, 40, 0.2); */
+    border-radius: 8px;
+    background-color: #262A2F;
+    margin: 5px;
 }
 .app-card .img-container {
     grid-column: 3;
@@ -272,6 +264,11 @@ body {
 }
 .app-card .img-container img {
     width: 10px;
+    opacity: .5;
+    transition: opacity .2s;
+}
+.app-card .img-container:hover img {
+    opacity: 1;
 }
 .app-card p {
     align-self: center;
@@ -328,26 +325,8 @@ body {
     justify-content: flex-end;
 }
 .create-workspace-btn {
-    margin-right: 20px;
-    padding: 6px 25px;
-    font-size: 16px;
+    margin-right: 25px;
+    padding: 4px 16px;
+    font-size: 14px;
     font-weight: 500;
-}
-
-/* ANIMATIONS */
-@keyframes desktop-span1-anim {
-    0% {
-        width: 0;
-    } 100% {
-        width: 30px;
-    }
-}
-@keyframes desktop-span2-anim {
-    0% {
-        width: 0;
-        margin-left: 0;
-    } 100% {
-        width: 4px;
-        margin-left: 32px;
-    }
 }

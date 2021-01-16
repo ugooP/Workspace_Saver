@@ -16,12 +16,14 @@
         </div>
     </div>
 
+    <div class="close-window-btns-container"></div>
+    
     <h1 class="workspace-name">Workspace</h1>
 
     <div class="desktop-container">
-        <div class="first-btn-container btn-container">
-            <!-- <button onclick="createNewDesktop('afterbegin')">+</button> -->
-        </div>
+        <!-- <div class="first-btn-container btn-container">
+            <button onclick="createNewDesktop('afterbegin')">+</button>
+        </div> -->
         
         <div class="desktop-list">
             <div class="desktop active-desktop" onclick="selectDesktop(1)">
@@ -29,9 +31,9 @@
             </div>
         </div>
 
-        <div class="last-btn-container btn-container">
+        <!-- <div class="last-btn-container btn-container">
             <button onclick="createNewDesktop('beforeend')">+</button>
-        </div>
+        </div> -->
     </div>
 
     <div class="desktop-infos-container">
@@ -42,15 +44,8 @@
                     <ul class="app-list" onmouseover="setMouseStatus(true)" onmouseout="setMouseStatus(false)"></ul>
                 </div>
                 <button class="select-app-btn button-default-style">Ajouter</button>
-                <input type="file" accept=".app" class="select-app-input" title="Importer une application">
+                <!-- <input type="file" accept=".app" class="select-app-input" title="Importer une application"> -->
             </div>
-        </div>
-        <div class="desktop-number-container">
-            <p class="desktop-number">Bureau 1</p>
-            <!-- <div class="desktop-number-span-container">
-                <span class="desktop-number-span1 desktop-number-span desktop-number-span1-anim"></span>
-                <span class="desktop-number-span2 desktop-number-span desktop-number-span2-anim"></span>
-            </div> -->
         </div>
 
         <div class="app-added-to-workspace">

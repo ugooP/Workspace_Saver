@@ -80,6 +80,8 @@ function addAppToWorkspace(app) {
     ul.style.display = 'none'
 }
 
+function ouai() { window.close() }
+
 function removeApp(appName) {
     let appCards = document.querySelectorAll('.app-card')
 
@@ -106,5 +108,6 @@ function initWorkspaceData() {
 }
 
 function createWorkspace() {
+    console.log(workspaceData);
     console.log(appArrayList);
 }

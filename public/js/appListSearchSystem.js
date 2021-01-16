@@ -20,6 +20,7 @@ fetch('/api/appList', { method: 'GET' })
 function fillInput(app) {
     input.value = app
     ul.style.display = 'none'
+    input.focus()
 }
 
 function setMouseStatus(status) {
