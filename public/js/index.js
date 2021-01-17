@@ -52,15 +52,21 @@ function isAppAlreadyAddedToWorkspace(app) {
     return false
 }
 function addAppToWorkspace(app) {
-
     // If it's the first time that user add an app, init the workspaceData variable
     if (workspaceData === undefined) {
         initWorkspaceData()
     }
-
     // Check if the added app is a browser
     let browserRegExp = new RegExp('(google chrome|firefox|firefox developer edition|brave browser|safari|internet explorer)$')
     if (browserRegExp.test(app.name.toLowerCase())) {
+        // Make a new array in the appList with all tabs for this browser
+        let newApp = {
+            "name": app.name,
+            "path": app.path,
+            "tabs": []
+        }
+        appArrayList.push(newApp)
+
         // Add new browser card in apps container
         appsContainer.insertAdjacentHTML('beforeend', `
             <div class="app-card browser-app-card">
@@ -70,19 +76,11 @@ function addAppToWorkspace(app) {
                         <img src="./img/cross.png" alt="Supprimer ${app.name}">
                     </div>
                 </div>
-                <div class="browser-app-tab-container">
+                <div class="browser-app-tab-container" onclick="createTabsWindow('${app.name}')">
                     <p class="browser-app-tab-name">Gérer les onglets...</p>
                 </div>
             </div>
         `)
-        // Make a new array in the appList with all tabs to open for this browser
-        let newApp = {
-            "name": app.name,
-            "path": app.path,
-            "tabs": []
-        }
-        appArrayList.push(newApp)
-
     } else {
         // Add new card in apps container
         appsContainer.insertAdjacentHTML('beforeend', `
