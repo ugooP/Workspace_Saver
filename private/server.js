@@ -13,7 +13,7 @@ function startServer() {
     app.listen(3000)
 
     app.use(express.static('public'))
-    app.use(express.text())
+    app.use(express.json())
 
     // Get all applications of the user
     let bigAppList = []
@@ -56,14 +56,27 @@ function startServer() {
         res.send(JSON.stringify(bigAppList))
     })
 
-    app.post('/api/appList', (req, res) => {
+    /* app.post('/api/appList', (req, res) => {
         open(`/${req.body}`)
-    })
-
-    /* app.get('/api/workspace', (req, res) => {
-        let file = fs.readFileSync('./save/patternWorkspace.json')
-        res.send(JSON.parse(file))
     }) */
+
+    app.get('/api/save', (req, res) => { res.send('salut') })
+
+    app.post('/api/save', (req, res) => {
+        // Create a new JSON file with all the data of the workspace in question
+        let indexArray = []
+        
+        fs.readdir('save', (err, files) => {
+            // Find the index of all workspaces and add 1 to the highest index
+            for (let i = 0; i < files.length; i++) {
+                let workspaceIndex = files[i].match(/[0-9]+/)
+                if (workspaceIndex !== null) {
+                    indexArray.push(workspaceIndex[0])
+                }
+            }
+            //Create the new JSON file with an unique workspace index
+            let workspaceIndex = Math.max(...indexArray) + 1
+            fs.writeFileSync(`save/workspace${workspaceIndex}.json` , JSON.stringify(req.body))
+        })
+    })
 }
-
-

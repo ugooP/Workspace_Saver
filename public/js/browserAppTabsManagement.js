@@ -109,16 +109,20 @@ function saveURLs(appName) {
     }
 }
 function displayTabsName(tabArray) {
-    // From all tabs, export a string with all names of the websites in succession
-    let websites = []
-    for (let i = 0; i < tabArray.length; i++) {
-        const tabName = tabArray[i].website;
-        websites.push(tabName)
-    }    
-    
-    let outputTxt = ''
-    for (let j = 0; j < websites.length; j++) {
-        outputTxt += `${websites[j]} • `
+    if (tabArray.length !== 0) {
+        // From all tabs, export a string with all names of the websites in succession
+        let websites = []
+        for (let i = 0; i < tabArray.length; i++) {
+            const tabName = tabArray[i].website;
+            websites.push(tabName)
+        }    
+        
+        let outputTxt = ''
+        for (let j = 0; j < websites.length; j++) {
+            outputTxt += `${websites[j]} • `
+        }
+        return outputTxt
+    } else {
+        return 'Gérer les onglets...'
     }
-    return outputTxt
 }

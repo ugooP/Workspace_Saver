@@ -51,11 +51,19 @@ function isAppAlreadyAddedToWorkspace(app) {
     }
     return false
 }
+function initWorkspaceData() {
+    workspaceData = {
+        "workspaceName": sessionStorage.getItem('workspaceName'),
+        "desktopList": {
+            "desktop1": ""
+        }
+    }
+}
 function addAppToWorkspace(app) {
     // If it's the first time that user add an app, init the workspaceData variable
-    if (workspaceData === undefined) {
+    /* if (workspaceData === undefined) {
         initWorkspaceData()
-    }
+    } */
     // Check if the added app is a browser
     let browserRegExp = new RegExp('(google chrome|firefox|firefox developer edition|brave browser|safari|internet explorer)$')
     if (browserRegExp.test(app.name.toLowerCase())) {
@@ -118,18 +126,6 @@ function removeApp(appName) {
     }
     isDesktopEmpty()
 }
-function initWorkspaceData() {
-    workspaceData = {
-        "workspaceName": sessionStorage.getItem('workspaceName'),
-        "desktopList": {
-            "desktop1": []
-        }
-    }
-}
-function createWorkspace() {
-    console.log(workspaceData);
-    console.log(appArrayList);
-}
 function isDesktopEmpty() {
     if (appArrayList.length === 0) {
         // If there is no app added to the workspace, say it to the user
@@ -148,4 +144,25 @@ function isDesktopEmpty() {
             appsContainer.style.justifyContent = 'space-between'
         } catch (TypeError) {}
     }
+}
+function saveNewWorkspace() {
+    workspaceData.desktopList.desktop1 = appArrayList
+    
+    // If workspace is empty, don't save it
+    if (workspaceData.desktopList.desktop1.length === 0) {
+        logErrorMsg('Cet espace de travail est vide')
+    } else {
+        createJSONfile(workspaceData)
+    }
+}
+async function createJSONfile(fileContent) {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(fileContent)
+    }
+    await fetch('/api/save', options)
+    console.log('workspace created');
 }

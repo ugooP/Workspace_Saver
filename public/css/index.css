@@ -43,6 +43,7 @@ body {
     color: #232529;
     cursor: default;
     user-select: none;
+    white-space: nowrap;
 }
 
 /* DESKTOP */
@@ -318,7 +319,7 @@ body {
 .workspace-name-input-container {
 
 
-    display: none !important;
+    display: none;
 
 
     position: absolute;

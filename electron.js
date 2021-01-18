@@ -1,6 +1,6 @@
 const { app, Menu, Tray, BrowserWindow, remote } = require('electron')
 const { shell } = require('electron')
-const server = require('./server')
+const server = require('./private/server')
 let tray = null
 
 // Hide icon in dock
@@ -61,7 +61,7 @@ function createWindow (fileName) {
             devTools: false,
         }
     })
-    win.loadFile(`public/html/${fileName}.html`)
+    win.loadFile(`../public/html/${fileName}.html`)
 }
 
 app.on('window-all-closed', () => {

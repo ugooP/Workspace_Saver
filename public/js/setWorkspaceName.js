@@ -8,8 +8,10 @@ workspaceNameInput.addEventListener('keyup', (event) => { if (event.keyCode === 
 
 function setWorkspaceName() {
     // Save workspace name
-    sessionStorage.setItem('workspaceName', workspaceNameInput.value)
-
-    workspaceName.innerHTML = sessionStorage.getItem('workspaceName')
-    workspaceNameContainer.style.display = 'none'
+    if (workspaceNameInput.value !== '') {
+        sessionStorage.setItem('workspaceName', workspaceNameInput.value)
+        workspaceName.innerHTML = sessionStorage.getItem('workspaceName')
+        workspaceNameContainer.style.display = 'none'
+        initWorkspaceData()
+    }
 }
