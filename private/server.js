@@ -65,17 +65,24 @@ function startServer() {
     app.post('/api/save', (req, res) => {
         // Create a new JSON file with all the data of the workspace in question
         let indexArray = []
+        let workspaceIndex
         
         fs.readdir('save', (err, files) => {
             // Find the index of all workspaces and add 1 to the highest index
             for (let i = 0; i < files.length; i++) {
-                let workspaceIndex = files[i].match(/[0-9]+/)
-                if (workspaceIndex !== null) {
-                    indexArray.push(workspaceIndex[0])
+                if (files[i] !== '.DS_Store') {
+                    let match = files[i].match(/[0-9]+/)
+                    if (match !== null) {
+                        indexArray.push(match[0])
+                    }
                 }
             }
             //Create the new JSON file with an unique workspace index
-            let workspaceIndex = Math.max(...indexArray) + 1
+            if (indexArray.length !== 0) {
+                workspaceIndex = Math.max(...indexArray) + 1
+            } else {
+                workspaceIndex = 0
+            }
             fs.writeFileSync(`save/workspace${workspaceIndex}.json` , JSON.stringify(req.body))
         })
     })

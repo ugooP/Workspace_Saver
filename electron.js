@@ -1,5 +1,5 @@
-const { app, Menu, Tray, BrowserWindow, remote } = require('electron')
-const { shell } = require('electron')
+const { app, Menu, Tray, BrowserWindow } = require('electron')
+const fs = require('fs')
 const server = require('./private/server')
 let tray = null
 
@@ -14,11 +14,7 @@ app.whenReady().then(() => {
         { label: 'Fermer tous les logiciels ouverts', type: 'normal', click() { closeAllOpenedApp() }},
         { type: 'separator' },
         
-        { label: 'workspace 1', type: 'normal', click() { openWorkspace() }},
-        { label: 'workspace 2', type: 'normal', click() { shell.openExternal('https://www.twitch.tv') } },
-        { label: 'workspace 3', type: 'normal' },
-        { label: 'workspace 4', type: 'normal' },
-        { label: 'workspace 5', type: 'normal' },
+        displayWorkspacesInContextMenu(),
 
         { type: 'separator' },
         { label: 'Préférences...', type: 'normal', click() { createWindow('preferences') }},
@@ -29,6 +25,22 @@ app.whenReady().then(() => {
     tray.setToolTip('Workspace Saver')
     tray.setContextMenu(contextMenu)
 })
+
+function displayWorkspacesInContextMenu() {
+    let workspaceName
+    fs.readdirSync('save', (err, files) => {
+        for (let i = 0; i < files.length; i++) {
+            fs.readFileSync(`save/${files[i]}`, (data) => {
+                let workspaceData = JSON.parse(data)
+                workspaceName = workspaceData.workspaceName
+                console.log(workspaceName);
+            })
+        }
+    })
+
+    let x = { label: workspaceName, type: 'normal' }
+    return x 
+}
 
 function newWorkspaceWindow () {
     const win = new BrowserWindow({

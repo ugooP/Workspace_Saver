@@ -55,7 +55,7 @@ function initWorkspaceData() {
     workspaceData = {
         "workspaceName": sessionStorage.getItem('workspaceName'),
         "desktopList": {
-            "desktop1": ""
+            "desktop1": []
         }
     }
 }
@@ -146,15 +146,21 @@ function isDesktopEmpty() {
     }
 }
 function saveNewWorkspace() {
-    workspaceData.desktopList.desktop1 = appArrayList
+    // Add all apps from appArrayList to "desktop1" array
+    for (let i = 0; i < appArrayList.length; i++) {
+        const app = appArrayList[i];
+        workspaceData.desktopList.desktop1.push(app)
+    }
     
     // If workspace is empty, don't save it
     if (workspaceData.desktopList.desktop1.length === 0) {
         logErrorMsg('Cet espace de travail est vide')
     } else {
         createJSONfile(workspaceData)
+        logSuccessMsg(`"${workspaceData.workspaceName}" a été créé`)
     }
 }
+
 async function createJSONfile(fileContent) {
     const options = {
         method: 'POST',
@@ -164,5 +170,4 @@ async function createJSONfile(fileContent) {
         body: JSON.stringify(fileContent)
     }
     await fetch('/api/save', options)
-    console.log('workspace created');
 }
