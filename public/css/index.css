@@ -317,11 +317,7 @@ body {
 
 /* WORKSPACE NAME */
 .workspace-name-input-container {
-
-
     display: none;
-
-
     position: absolute;
     top: 0;
     left: 0;
@@ -397,3 +393,30 @@ body {
     align-items: center;
 }
 
+/* SAVED WORKSPACE MESSAGE */
+.saved-workspace-msg-container {
+
+
+    display: none;
+
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 800px;
+    height: 500px;
+    background-color: #1E2024;
+    align-items: center;
+    justify-content: center;
+    z-index: +2;
+}
+.saved-workspace-msg h2 {
+    font-weight: normal;
+}
+.saved-workspace-msg span {
+    font-weight: 700;
+}
+.saved-workspace-msg h2, .saved-workspace-msg span {
+    color: rgb(105, 230, 209);
+    font-size: 15px;
+}

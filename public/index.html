@@ -9,17 +9,6 @@
     <title>Nouvel espace de travail</title>
 </head>
 <body>
-    <!-- HIDDEN CONTAINERS -->
-    <div class="workspace-name-input-container">
-        <div class="workspace-name-input">
-            <input type="text" placeholder="Nom de l'espace de travail">
-            <button class="workspace-name-btn button-default-style">Créer</button>
-        </div>
-    </div>
-
-    <div class="tab-management-window-container"></div>
-
-    <!--  -->
 
     <div class="close-window-btns-container"></div>
     
@@ -62,6 +51,22 @@
         <button class="create-workspace-btn button-default-style" onclick="saveNewWorkspace()">Générer</button>
     </div>
 
+    <!-- HIDDEN CONTAINERS -->
+    <div class="workspace-name-input-container">
+        <div class="workspace-name-input">
+            <input type="text" placeholder="Nom de l'espace de travail">
+            <button class="workspace-name-btn button-default-style">Créer</button>
+        </div>
+    </div>
+
+    <div class="tab-management-window-container"></div>
+
+    <div class="saved-workspace-msg-container">
+        <div class="saved-workspace-msg">
+            <h2><span>"workspace 2"</span> a été sauvegarder</h2>
+        </div>
+    </div>
+
     <div class="log-msg-container success-msg-container">
         <img src="./img/check.png">
         <p class="log-msg"></p>
@@ -73,9 +78,11 @@
 
     <script src="js/setWorkspaceName.js"></script>
     <script src="js/appListSearchSystem.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/savedWorkspaceWindow.js"></script>
+    <script src="js/appManagement.js"></script>
+    <script src="js/saveWorkspace.js"></script>
     <script src="js/browserAppTabsManagement.js"></script>
     <script src="js/multipleDesktopManagement.js"></script>
-    <script src="js/logFunctions.js"></script>
+    <script src="js/logMessages.js"></script>
 </body>
 </html>

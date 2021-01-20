@@ -7,7 +7,6 @@ let tray = null
 app.dock.hide()
 
 app.whenReady().then(() => {
-
     tray = new Tray('public/img/icons/icon.png')
     const contextMenu = Menu.buildFromTemplate(getContextMenuTemplate())
     tray.setToolTip('Workspace Saver')
@@ -26,11 +25,11 @@ function getContextMenuTemplate() {
         { label: 'Préférences...', type: 'normal', click() { createWindow('preferences') }},
         { label: 'À propos', type: 'normal', click() { createWindow('about') }},
         { type: 'separator' },
+        { label: 'Redémarrer', type: 'normal', click() { app.relaunch(); app.exit() }},
         { label: 'Quitter', type: 'normal', click() { app.quit() }}
     ]
 
     let workspaceObjects = []
-
     let files = fs.readdirSync('save')
     for (let i = 0; i < files.length; i++) {
         if (files[i] !== '.DS_Store') {
@@ -52,6 +51,11 @@ function getContextMenuTemplate() {
         index++
     }
     return contextMenuTemplate
+}
+
+function newTray() {
+    app.relaunch()
+    
 }
 
 function newWorkspaceWindow () {
@@ -85,7 +89,7 @@ function createWindow (fileName) {
             devTools: false,
         }
     })
-    win.loadFile(`../public/html/${fileName}.html`)
+    win.loadFile(`public/html/${fileName}.html`)
 }
 
 app.on('window-all-closed', () => {

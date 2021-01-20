@@ -60,10 +60,6 @@ function initWorkspaceData() {
     }
 }
 function addAppToWorkspace(app) {
-    // If it's the first time that user add an app, init the workspaceData variable
-    /* if (workspaceData === undefined) {
-        initWorkspaceData()
-    } */
     // Check if the added app is a browser
     let browserRegExp = new RegExp('(google chrome|firefox|firefox developer edition|brave browser|safari|internet explorer)$')
     if (browserRegExp.test(app.name.toLowerCase())) {
@@ -134,7 +130,7 @@ function isDesktopEmpty() {
         appsContainer.insertAdjacentHTML('afterbegin', `
             <div class="empty-desktop-msg-container">
                 <p>Ce bureau est vide...</p>
-                <p>Commence par <span onclick="document.querySelector('.search-input').click(); document.querySelector('.search-input').focus()">Ajouter une application</span></p>
+                <p>Commencer par <span onclick="document.querySelector('.search-input').click(); document.querySelector('.search-input').focus()">ajouter une application</span></p>
             </div>
         `)
     } else {
@@ -144,30 +140,4 @@ function isDesktopEmpty() {
             appsContainer.style.justifyContent = 'space-between'
         } catch (TypeError) {}
     }
-}
-function saveNewWorkspace() {
-    // Add all apps from appArrayList to "desktop1" array
-    for (let i = 0; i < appArrayList.length; i++) {
-        const app = appArrayList[i];
-        workspaceData.desktopList.desktop1.push(app)
-    }
-    
-    // If workspace is empty, don't save it
-    if (workspaceData.desktopList.desktop1.length === 0) {
-        logErrorMsg('Cet espace de travail est vide')
-    } else {
-        createJSONfile(workspaceData)
-        logSuccessMsg(`"${workspaceData.workspaceName}" a été créé`)
-    }
-}
-
-async function createJSONfile(fileContent) {
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(fileContent)
-    }
-    await fetch('/api/save', options)
 }

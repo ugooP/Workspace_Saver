@@ -31,12 +31,23 @@ function createTabsWindow(appName) {
 
 function createNewTabInput() {
     let tabInputContainer = document.querySelector('.tab-input-container')
-
-    tabInputContainer.insertAdjacentHTML('beforeend', `
-        <input type="text" placeholder="https://www.google.com/">
-    `)
-    
     let tabInputs = document.querySelectorAll('.tab-input-container input')
+    let emptyInputCounter = 0
+
+    // Don't create multiple empty input
+    for (let i = 0; i < tabInputs.length; i++) {
+        if (tabInputs[i].value === '') {
+            emptyInputCounter++
+            break
+        }
+    }
+    if (emptyInputCounter === 0) {
+        tabInputContainer.insertAdjacentHTML('beforeend', `
+            <input type="text" placeholder="https://www.google.com/">
+        `)
+    }
+    
+    tabInputs = document.querySelectorAll('.tab-input-container input')
 
     tabInputs[tabInputs.length - 1].addEventListener('input', () => {
         let invalidURLmsg = document.querySelector('.invalidURLmsg')
