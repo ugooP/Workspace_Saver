@@ -7,39 +7,51 @@ let tray = null
 app.dock.hide()
 
 app.whenReady().then(() => {
-    // Tray configuration
+
     tray = new Tray('public/img/icons/icon.png')
-    const contextMenu = Menu.buildFromTemplate([
+    const contextMenu = Menu.buildFromTemplate(getContextMenuTemplate())
+    tray.setToolTip('Workspace Saver')
+    tray.setContextMenu(contextMenu)
+})
+
+function getContextMenuTemplate() {
+    let contextMenuTemplate = [
         { label: 'Créer un nouvel espace de travail', type: 'normal', click() { newWorkspaceWindow() }},
         { label: 'Fermer tous les logiciels ouverts', type: 'normal', click() { closeAllOpenedApp() }},
         { type: 'separator' },
-        
-        displayWorkspacesInContextMenu(),
-
+        // --------------------------------------
+        // ------- Insert Workspaces here -------
+        // --------------------------------------
         { type: 'separator' },
         { label: 'Préférences...', type: 'normal', click() { createWindow('preferences') }},
         { label: 'À propos', type: 'normal', click() { createWindow('about') }},
         { type: 'separator' },
         { label: 'Quitter', type: 'normal', click() { app.quit() }}
-    ])
-    tray.setToolTip('Workspace Saver')
-    tray.setContextMenu(contextMenu)
-})
+    ]
 
-function displayWorkspacesInContextMenu() {
-    let workspaceName
-    fs.readdirSync('save', (err, files) => {
-        for (let i = 0; i < files.length; i++) {
-            fs.readFileSync(`save/${files[i]}`, (data) => {
-                let workspaceData = JSON.parse(data)
-                workspaceName = workspaceData.workspaceName
-                console.log(workspaceName);
-            })
+    let workspaceObjects = []
+
+    let files = fs.readdirSync('save')
+    for (let i = 0; i < files.length; i++) {
+        if (files[i] !== '.DS_Store') {
+            // Get workspace's names
+            let data = fs.readFileSync(`save/${files[i]}`)
+            let workspaceData = JSON.parse(data)
+            // Get workspace's index
+            let workspaceIndex = files[i].match(/[0-9]+/)
+            // Create the workspace's object
+            const obj = { label: workspaceData.workspaceName, type: 'normal', click() { openWorkspace(workspaceIndex[0]) }}
+            workspaceObjects.push(obj);
         }
-    })
+    }
 
-    let x = { label: workspaceName, type: 'normal' }
-    return x 
+    // Insert each workspace object in the contextMenuTemplate
+    let index = 3
+    for (let k = 0; k < workspaceObjects.length; k++) {
+        contextMenuTemplate.splice(index, 0, workspaceObjects[k])
+        index++
+    }
+    return contextMenuTemplate
 }
 
 function newWorkspaceWindow () {
