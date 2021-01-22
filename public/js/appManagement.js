@@ -77,7 +77,7 @@ function addAppToWorkspace(app) {
                 <div class="app-card-title">
                     <p path="${app.path}">${app.name}</p>
                     <div class="img-container" onclick="removeApp('${app.name}')">
-                        <img src="./img/cross.png" alt="Supprimer ${app.name}">
+                        <img src="./img/cancel.png" alt="Supprimer ${app.name}">
                     </div>
                 </div>
                 <div class="browser-app-tab-container" onclick="createTabsWindow('${app.name}')">
@@ -91,7 +91,7 @@ function addAppToWorkspace(app) {
             <div class="app-card">
                 <p path="${app.path}">${app.name}</p>
                 <div class="img-container" onclick="removeApp('${app.name}')">
-                    <img src="./img/cross.png" alt="Supprimer ${app.name}">
+                    <img src="./img/cancel.png" alt="Supprimer ${app.name}">
                 </div>
             </div>
         `)
@@ -140,4 +140,30 @@ function isDesktopEmpty() {
             appsContainer.style.justifyContent = 'space-between'
         } catch (TypeError) {}
     }
+}
+function saveNewWorkspace() {
+    // Add all apps from appArrayList to "desktop1" array
+    for (let i = 0; i < appArrayList.length; i++) {
+        const app = appArrayList[i];
+        workspaceData.desktopList.desktop1.push(app)
+    }
+    
+    // If workspace is empty, don't save it
+    if (workspaceData.desktopList.desktop1.length === 0) {
+        logErrorMsg('Cet espace de travail est vide')
+    } else {
+        createJSONfile(workspaceData)
+        displaySavedWorkspaceMsg(workspaceData.workspaceName)
+    }
+}
+
+async function createJSONfile(fileContent) {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(fileContent)
+    }
+    await fetch('/api/save', options)
 }

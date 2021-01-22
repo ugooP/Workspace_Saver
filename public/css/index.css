@@ -271,10 +271,11 @@ body {
     align-items: center;
     position: absolute;
     bottom: -46px;
+    z-index: +3;
     transition: bottom 1s;
 }
 .log-msg-container img {
-    height: 16px;
+    height: 18px;
     padding-right: 10px;
 }
 .success-msg-container {

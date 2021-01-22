@@ -7,11 +7,14 @@ workspaceNameBtn.addEventListener('click', setWorkspaceName)
 workspaceNameInput.addEventListener('keyup', (event) => { if (event.keyCode === 13) { setWorkspaceName() }})
 
 function setWorkspaceName() {
+    let regex = new RegExp(/^ +$/)
     // Save workspace name
-    if (workspaceNameInput.value !== '') {
+    if (workspaceNameInput.value !== '' && !regex.test(workspaceNameInput.value)) {
         sessionStorage.setItem('workspaceName', workspaceNameInput.value)
         workspaceName.innerHTML = sessionStorage.getItem('workspaceName')
         workspaceNameContainer.style.display = 'none'
         initWorkspaceData()
+    } else {
+        logErrorMsg('Renseigner un nom')
     }
 }
