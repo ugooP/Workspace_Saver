@@ -11,7 +11,8 @@ function saveNewWorkspace() {
     } else {
         createJSONfile(workspaceData)
         displaySavedWorkspaceMsg(workspaceData.workspaceName)
-        fetch('/api/tray', { method: 'POST' })
+        // Refresh the tray menu
+        //fetch('/api/tray', { method: 'POST' })
     }
 }
 

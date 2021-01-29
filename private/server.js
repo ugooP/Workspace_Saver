@@ -1,5 +1,6 @@
+
 module.exports = {
-    startServer: startServer()
+    start: startServer()
 }
 
 function startServer() {
@@ -59,10 +60,9 @@ function startServer() {
         open(`/${req.body}`)
     }) */
 
-    app.post('/api/tray', (req, res) => { 
+    /* app.post('/api/tray', (req, res) => { 
         // Update the tray menu
-        console.log('in');
-    })
+    }) */
 
     app.post('/api/save', (req, res) => {
         // Create a new JSON file with all the data of the workspace in question
