@@ -4,7 +4,6 @@ module.exports = {
 
 function startServer() {
     const exec = require('child_process').exec
-    const open = require('open')
     const fs = require('fs')
 
     // Server initiation
@@ -60,7 +59,10 @@ function startServer() {
         open(`/${req.body}`)
     }) */
 
-    app.get('/api/save', (req, res) => { res.send('salut') })
+    app.post('/api/tray', (req, res) => { 
+        // Update the tray menu
+        console.log('in');
+    })
 
     app.post('/api/save', (req, res) => {
         // Create a new JSON file with all the data of the workspace in question

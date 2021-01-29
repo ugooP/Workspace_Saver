@@ -11,6 +11,7 @@ function saveNewWorkspace() {
     } else {
         createJSONfile(workspaceData)
         displaySavedWorkspaceMsg(workspaceData.workspaceName)
+        fetch('/api/tray', { method: 'POST' })
     }
 }
 
