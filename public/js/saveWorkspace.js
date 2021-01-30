@@ -10,7 +10,7 @@ function saveNewWorkspace() {
         logErrorMsg('Cet espace de travail est vide')
     } else {
         createJSONfile(workspaceData)
-        displaySavedWorkspaceMsg(workspaceData.workspaceName)
+        displaySavedWorkspaceMsg(workspaceData.workspaceName, 3)
         // Refresh the tray menu
         //fetch('/api/tray', { method: 'POST' })
     }

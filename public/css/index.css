@@ -409,15 +409,31 @@ body {
     background-color: #1E2024;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     z-index: +2;
+}
+.saved-workspace-msg {
+    margin-top: -120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 .saved-workspace-msg h2 {
     font-weight: normal;
+    text-align: center;
+    margin-top: -80px;
 }
 .saved-workspace-msg span {
-    font-weight: 700;
+    font-weight: 600;
 }
 .saved-workspace-msg h2, .saved-workspace-msg span {
-    color: rgb(105, 230, 209);
+    color: #E56130;
+    /* color: rgb(105, 230, 209); */
     font-size: 15px;
+}
+.run-workspace-btn {
+    position: absolute;
+    bottom: 30px;
+    font-size: 13px;
 }

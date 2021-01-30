@@ -86,6 +86,9 @@ function startServer() {
                 workspaceIndex = 0
             }
             fs.writeFileSync(`save/workspace${workspaceIndex}.json` , JSON.stringify(req.body))
+
         })
+        res.send(workspaceIndex)
+        res.end()
     })
 }
