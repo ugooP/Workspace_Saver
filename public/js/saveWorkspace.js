@@ -1,12 +1,9 @@
 function saveNewWorkspace() {
-    // Add all apps from appArrayList to "desktop1" array
-    for (let i = 0; i < appArrayList.length; i++) {
-        const app = appArrayList[i];
-        workspaceData.desktopList.desktop1.push(app)
-    }
+    // Add all apps from appArrayList to the desktop array
+    workspaceData.desktopList.push(appArrayList)
     
     // If workspace is empty, don't save it
-    if (workspaceData.desktopList.desktop1.length === 0) {
+    if (appArrayList.length === 0) {
         logErrorMsg('Cet espace de travail est vide')
     } else {
         createJSONfile(workspaceData)
@@ -27,7 +24,7 @@ async function createJSONfile(fileContent) {
         .then((res) => res.text())
         .then((data) => {
             // When the JSON is created, display the success saved window
-            let workspaceIndex = parseInt(data)
+            let workspaceIndex = data
             displaySavedWorkspaceMsg(workspaceData.workspaceName, workspaceIndex)    
     })
 }

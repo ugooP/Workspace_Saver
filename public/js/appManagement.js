@@ -54,9 +54,7 @@ function isAppAlreadyAddedToWorkspace(app) {
 function initWorkspaceData() {
     workspaceData = {
         "workspaceName": sessionStorage.getItem('workspaceName'),
-        "desktopList": {
-            "desktop1": []
-        }
+        "desktopList": []
     }
 }
 function addAppToWorkspace(app) {

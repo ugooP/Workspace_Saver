@@ -1,6 +1,7 @@
-const { app, Menu, Tray, BrowserWindow, net } = require('electron')
+const { app, Menu, Tray, BrowserWindow } = require('electron')
 const fs = require('fs')
 const server = require('./private/server')
+const openWorkspace = require('./private/openWorkspace')
 let tray = null
 
 // Hide icon in dock

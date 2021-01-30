@@ -1,3 +1,6 @@
+
+// Get the list of all opened app
+
 const si = require('systeminformation')
 let appList = []
 

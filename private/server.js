@@ -1,4 +1,3 @@
-
 module.exports = {
     start: startServer()
 }
@@ -6,14 +5,15 @@ module.exports = {
 function startServer() {
     const exec = require('child_process').exec
     const fs = require('fs')
+    const openWorkspace = require('./openWorkspace')
 
     // Server initiation
     const express = require('express')
     const app = express()
     app.listen(3000)
-
     app.use(express.static('public'))
     app.use(express.json())
+    app.use(express.text())
 
     // Get all applications of the user
     let bigAppList = []
@@ -37,7 +37,6 @@ function startServer() {
     }
 
     function createObject(fullAppPath) {
-        
         let newPath = fullAppPath.replace('.app', '')
         let newName = newPath.split('/')
         let name = newName[newName.length - 1]
@@ -50,22 +49,15 @@ function startServer() {
         bigAppList.push(obj)
     }
 
+    // Send to client side the list of all apps
     app.get('/api/appList', (req, res) => {
         // Sort the list in alphabetical order
         bigAppList.sort((a, b) => (a.name > b.name) ? 1 : -1)
         res.send(JSON.stringify(bigAppList))
     })
 
-    /* app.post('/api/appList', (req, res) => {
-        open(`/${req.body}`)
-    }) */
-
-    /* app.post('/api/tray', (req, res) => { 
-        // Update the tray menu
-    }) */
-
+    // Create a JSON file with all the data of the workspace in question
     app.post('/api/save', (req, res) => {
-        // Create a new JSON file with all the data of the workspace in question
         let indexArray = []
         let workspaceIndex
         
@@ -89,5 +81,10 @@ function startServer() {
 
             res.send(workspaceIndex.toString())
         })
+    })
+
+    // Open a workspace
+    app.post('/api/openWorkspace', (req, res) => {
+        openWorkspace(req.body)
     })
 }
