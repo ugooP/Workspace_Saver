@@ -5,6 +5,6 @@ function displaySavedWorkspaceMsg(workspaceName, workspaceIndex) {
     savedWorkspaceMsgContainer.style.display = 'flex'
     savedWorkspaceMsg.innerHTML = `"${workspaceName}"`
     savedWorkspaceMsgContainer.insertAdjacentHTML('beforeend', `
-        <button class="button-default-style run-workspace-btn" onclick="openWorkspace(${workspaceIndex})">Lancer cet espace de travail</button>
+        <button class="button-default-style run-workspace-btn" onclick="openWorkspace(${workspaceIndex})">Lancer l'espace de travail</button>
     `)
 }

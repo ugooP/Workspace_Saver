@@ -10,7 +10,6 @@ function saveNewWorkspace() {
         logErrorMsg('Cet espace de travail est vide')
     } else {
         createJSONfile(workspaceData)
-        displaySavedWorkspaceMsg(workspaceData.workspaceName, 3)
         // Refresh the tray menu
         //fetch('/api/tray', { method: 'POST' })
     }
@@ -25,4 +24,10 @@ async function createJSONfile(fileContent) {
         body: JSON.stringify(fileContent)
     }
     await fetch('/api/save', options)
+        .then((res) => res.text())
+        .then((data) => {
+            // When the JSON is created, display the success saved window
+            let workspaceIndex = parseInt(data)
+            displaySavedWorkspaceMsg(workspaceData.workspaceName, workspaceIndex)    
+    })
 }
