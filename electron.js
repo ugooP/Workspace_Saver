@@ -63,8 +63,8 @@ function getContextMenuTemplate() {
 }
 function manageWorkspaces() {
     const win = new BrowserWindow({
-        width: 400,
-        height: 900,
+        width: 600,
+        height: 800,
         maximizable: false,
         titleBarStyle: 'hidden',
         webPreferences: {
