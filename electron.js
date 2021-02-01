@@ -20,11 +20,12 @@ app.on('ready', () => {
         }
     })
 })
-
 function getContextMenuTemplate() {
     let contextMenuTemplate = [
+        { label: 'Gérer les espaces de travail', type: 'normal', click() { manageWorkspaces() }},
         { label: 'Créer un nouvel espace de travail', type: 'normal', click() { newWorkspaceWindow() }},
         { label: 'Fermer tous les logiciels ouverts', type: 'normal', click() { closeAllOpenedApp() }},
+        { type: 'separator' },
         { label: 'Rafraichir la liste', type: 'normal', click() { refreshMenu() }},
         { type: 'separator' },
         // --------------------------------------
@@ -53,14 +54,25 @@ function getContextMenuTemplate() {
     }
 
     // Insert each workspace object in the contextMenuTemplate
-    let index = 4
+    let index = 6
     for (let k = 0; k < workspaceObjects.length; k++) {
         contextMenuTemplate.splice(index, 0, workspaceObjects[k])
         index++
     }
     return contextMenuTemplate
 }
-
+function manageWorkspaces() {
+    const win = new BrowserWindow({
+        width: 400,
+        height: 900,
+        maximizable: false,
+        titleBarStyle: 'hidden',
+        webPreferences: {
+            nodeIntegration: true
+        }
+    })
+    win.loadFile('public/html/manageWorkspaces.html')
+}
 function newWorkspaceWindow () {
     const win = new BrowserWindow({
         width: 800,
@@ -75,11 +87,9 @@ function newWorkspaceWindow () {
     server.start
     win.loadURL('http://localhost:3000/')
 }
-
 function closeAllOpenedApp () {
     
 }
-
 function createWindow (fileName) {
     const win = new BrowserWindow({
         width: fileName === 'about' ? 300 : 300,
@@ -94,7 +104,6 @@ function createWindow (fileName) {
     })
     win.loadFile(`public/html/${fileName}.html`)
 }
-
 function refreshMenu() {
     tray.closeContextMenu()
     const contextMenu = Menu.buildFromTemplate(getContextMenuTemplate())
