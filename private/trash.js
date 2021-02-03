@@ -1,9 +1,14 @@
-const { exec } = require('child_process');
-const open = require('open')
+const fs = require('fs')
 
-async function run(path) {
-    await open(`/${path}`)
-    console.log('Done');
+let workspaceList = []
+let readdir = fs.readdirSync('save')
+
+for (let i = 0; i < readdir.length; i++) {
+    const file = readdir[i];
+    if (/\.json/.test(file)) {
+        // Push the data of the workspace in the 'workspaceList array'
+        let readFile = fs.readFileSync(`./save/${file}`)
+        let workspaceData = JSON.parse(readFile)
+        workspaceList.push(workspaceData)
+    }
 }
-
-run('System/Applications/Utilities/Activity Monitor.app')

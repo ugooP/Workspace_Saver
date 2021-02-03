@@ -22,8 +22,8 @@ app.on('ready', () => {
 })
 function getContextMenuTemplate() {
     let contextMenuTemplate = [
-        { label: 'Gérer les espaces de travail', type: 'normal', click() { manageWorkspaces() }},
-        { label: 'Créer un nouvel espace de travail', type: 'normal', click() { newWorkspaceWindow() }},
+        { label: 'Gérer', type: 'normal', click() { manageWorkspaces() }},
+        { label: 'Nouvel espace de travail', type: 'normal', click() { newWorkspaceWindow() }},
         { label: 'Fermer tous les logiciels ouverts', type: 'normal', click() { closeAllOpenedApp() }},
         { type: 'separator' },
         { label: 'Rafraichir la liste', type: 'normal', click() { refreshMenu() }},
@@ -35,6 +35,7 @@ function getContextMenuTemplate() {
         { label: 'Préférences...', type: 'normal', click() { createWindow('preferences') }},
         { label: 'À propos', type: 'normal', click() { createWindow('about') }},
         { type: 'separator' },
+        { label: 'Restart', type: 'normal', click() { app.relaunch(); app.quit() }},
         { label: 'Quitter', type: 'normal', click() { app.quit() }}
     ]
 
@@ -63,8 +64,8 @@ function getContextMenuTemplate() {
 }
 function manageWorkspaces() {
     const win = new BrowserWindow({
-        width: 600,
-        height: 800,
+        width: 500,
+        height: 700,
         maximizable: false,
         titleBarStyle: 'hidden',
         webPreferences: {

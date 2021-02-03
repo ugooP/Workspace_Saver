@@ -87,4 +87,22 @@ function startServer() {
     app.post('/api/openWorkspace', (req, res) => {
         openWorkspace(req.body)
     })
+
+    // Retrun the data of all workspaces
+    app.get('/api/workspaces', (req, res) => {
+        let workspaceList = []
+        let readdir = fs.readdirSync('save')
+        
+        for (let i = 0; i < readdir.length; i++) {
+            const file = readdir[i];
+            if (/\.json/.test(file)) {
+                // Push the data of the workspace in the 'workspaceList' array
+                let readFile = fs.readFileSync(`./save/${file}`)
+                let workspaceData = JSON.parse(readFile)
+                workspaceList.push(workspaceData)
+            }
+        }
+        // Return the 'workspaceList' array
+        res.send(workspaceList)
+    })
 }
