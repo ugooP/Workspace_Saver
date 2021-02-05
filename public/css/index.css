@@ -4,7 +4,8 @@ COLOR PALETTE
 WHITE #eaeaea
 GREY #262A2F
 DARK BLUE #1E2024
-ORANGE #E56130
+ORANGE #E59430
+YELLOW #E59430
 */
 
 * {
@@ -28,7 +29,9 @@ body {
     cursor: pointer;
     border: none;
     outline: none;
-    background-color: #E56130;
+    background-color: #E59430;
+    color: #1E2024;
+    font-weight: 500;
     padding: 5px 13px;
     border-radius: 5px;
 }
@@ -172,7 +175,8 @@ body {
 }
 .app-list li:hover {
     opacity: 1;
-    background-color: #E56130;
+    background-color: #E59430;
+    color: #1E2024;
 }
 
 /* APP ADDED TO WORKSPACE */
@@ -252,7 +256,7 @@ body {
     height: 40px;
 }
 .browser-app-card .browser-app-tab-container {
-    background-color: #E56130;
+    background-color: #E59430;
     border-radius: 0 0 10px 10px;
     cursor: pointer;
     padding: 3px;
@@ -260,6 +264,7 @@ body {
 .browser-app-tab-container p {
     font-size: 12px;
     font-weight: 400;
+    color: #1E2024;
 }
 
 .log-msg-container {
@@ -372,7 +377,7 @@ body {
     justify-content: center;
 }
 .tab-input-container input {
-    width: 90%;
+    width: 100%;
     padding: 7px;
     margin: 10px 0;
     color: black;
@@ -428,7 +433,7 @@ body {
     font-weight: 600;
 }
 .saved-workspace-msg h2, .saved-workspace-msg span {
-    color: #E56130;
+    color: #E59430;
     /* color: rgb(105, 230, 209); */
     font-size: 15px;
 }

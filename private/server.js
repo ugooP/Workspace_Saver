@@ -88,7 +88,7 @@ function startServer() {
         openWorkspace(req.body)
     })
 
-    // Retrun the data of all workspaces
+    // Retrun the list of all workspaces
     app.get('/api/workspaces', (req, res) => {
         let workspaceList = []
         let readdir = fs.readdirSync('save')
@@ -97,7 +97,7 @@ function startServer() {
             const file = readdir[i];
             if (/\.json/.test(file)) {
                 // Push the data of the workspace in the 'workspaceList' array
-                let readFile = fs.readFileSync(`./save/${file}`)
+                let readFile = fs.readFileSync(`save/${file}`)
                 let workspaceData = JSON.parse(readFile)
                 workspaceList.push(workspaceData)
             }

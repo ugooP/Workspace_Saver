@@ -86,15 +86,16 @@ function saveURLs(appName) {
     let browserTabsWindow = document.querySelector('.browser-app-tab-management-window')
     let tabInputContainer = document.querySelector('.tab-input-container')
     let tabInputs = document.querySelectorAll('.tab-input-container input')
+    let urlRegExp = new RegExp('^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$')
+    let domainRegexp = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)/
 
     for (let i = 0; i < tabInputs.length; i++) {
         const input = tabInputs[i]
         const url = input.value
-        const regexp = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)/
 
-        if (url !== '') {
+        if (url !== '' && urlRegExp.test(url)) {
             const tab = {
-                "website": url.match(regexp)[1],
+                "website": url.match(domainRegexp)[1],
                 "url": url
             }
             // Add tab to the specific app
