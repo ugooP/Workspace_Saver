@@ -1,3 +1,5 @@
+// The functions to save a workspace in a JSON file
+
 function saveNewWorkspace() {
     // Add all apps from appArrayList to the desktop array
     workspaceData.desktopList.push(appArrayList)

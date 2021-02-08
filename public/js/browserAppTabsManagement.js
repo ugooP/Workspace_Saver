@@ -1,3 +1,4 @@
+// Gestion of the tabs (for browsers)
 let tabManagementWindowContainer = document.querySelector('.tab-management-window-container')
 
 function createTabsWindow(appName) {

@@ -4,8 +4,8 @@ COLOR PALETTE
 WHITE #eaeaea
 GREY #262A2F
 DARK BLUE #1E2024
-ORANGE #E59430
-YELLOW #E59430
+ORANGE #E56130
+YELLOW rgb(229, 148, 48)
 */
 
 * {
@@ -29,8 +29,7 @@ body {
     cursor: pointer;
     border: none;
     outline: none;
-    background-color: #E59430;
-    color: #1E2024;
+    background-color: #E56130;
     font-weight: 500;
     padding: 5px 13px;
     border-radius: 5px;
@@ -175,8 +174,7 @@ body {
 }
 .app-list li:hover {
     opacity: 1;
-    background-color: #E59430;
-    color: #1E2024;
+    background-color: #E56130;
 }
 
 /* APP ADDED TO WORKSPACE */
@@ -256,7 +254,7 @@ body {
     height: 40px;
 }
 .browser-app-card .browser-app-tab-container {
-    background-color: #E59430;
+    background-color: #E56130;
     border-radius: 0 0 10px 10px;
     cursor: pointer;
     padding: 3px;
@@ -433,7 +431,7 @@ body {
     font-weight: 600;
 }
 .saved-workspace-msg h2, .saved-workspace-msg span {
-    color: #E59430;
+    color: #E56130;
     /* color: rgb(105, 230, 209); */
     font-size: 15px;
 }

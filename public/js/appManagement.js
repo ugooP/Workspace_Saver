@@ -1,3 +1,4 @@
+// All the functions to manage apps (add, delete, ...)
 let addAppBtn = document.querySelector('.select-app-btn')
 let appsContainer = document.querySelector('.app-added-to-workspace')
 let appCardCrossImg = document.querySelector('.app-card .img-container')

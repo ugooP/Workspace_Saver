@@ -1,3 +1,4 @@
+// Gestion of multiple desktops (not implemented in the app)
 let desktopList = document.querySelector('.desktop-list')
 let desktopNumber = document.querySelector('.desktop-number')
 

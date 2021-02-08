@@ -1,3 +1,4 @@
+// This is the successfully saved workspace window
 let savedWorkspaceMsgContainer = document.querySelector('.saved-workspace-msg-container')
 let savedWorkspaceMsg = document.querySelector('.saved-workspace-msg span')
 

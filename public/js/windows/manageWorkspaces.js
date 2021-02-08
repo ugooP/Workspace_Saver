@@ -1,3 +1,7 @@
+
+// A window where all saved workspaces are displayed and where user can delete or modify any of these workspaces
+// This window only works in a browser (not in Electron)
+
 let manageWorkspacesContainer = document.querySelector('.manage-workspaces-container')
 let emptyMsg = document.querySelector('.manage-workspaces-container .empty-msg')
 
@@ -31,5 +35,3 @@ fetch('/api/workspaces', { method: 'GET' })
         emptyMsg.style.display = 'block'
     }
 })
-.catch(err => console.log(err))
-

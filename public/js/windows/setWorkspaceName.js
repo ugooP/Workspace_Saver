@@ -1,3 +1,4 @@
+// This is the window where user fill the name of his workspace
 let workspaceNameBtn = document.querySelector('.workspace-name-btn')
 let workspaceNameInput = document.querySelector('.workspace-name-input input')
 let workspaceNameContainer = document.querySelector('.workspace-name-input-container')
